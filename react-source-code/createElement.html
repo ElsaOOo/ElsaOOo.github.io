@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>React.createElement | ElsaOOo Blog</title>
+    <meta name="generator" content="VuePress 1.5.0">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="description" content="react 源码解析，react createElement">
+    <meta property="article:modified_time" content="null">
+    <meta property="og:site_name" content="ElsaOOo Blog">
+    <meta property="og:title" content="React.createElement">
+    <meta property="og:description" content="react 源码解析，react createElement">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="/react-source-code/createElement.html">
+    <meta name="twitter:title" content="React.createElement">
+    <meta name="twitter:description" content="react 源码解析，react createElement">
+    <meta name="twitter:url" content="/react-source-code/createElement.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preload" href="/assets/css/0.styles.5ab7af87.css" as="style"><link rel="preload" href="/assets/js/app.996a1042.js" as="script"><link rel="preload" href="/assets/js/2.428c6b5b.js" as="script"><link rel="preload" href="/assets/js/7.dea111ea.js" as="script"><link rel="prefetch" href="/assets/js/10.6868a405.js"><link rel="prefetch" href="/assets/js/11.d18925ff.js"><link rel="prefetch" href="/assets/js/12.1f1e59b2.js"><link rel="prefetch" href="/assets/js/13.877b4336.js"><link rel="prefetch" href="/assets/js/14.d32fc3c4.js"><link rel="prefetch" href="/assets/js/15.1b863f8f.js"><link rel="prefetch" href="/assets/js/16.7695612e.js"><link rel="prefetch" href="/assets/js/17.b593c7cf.js"><link rel="prefetch" href="/assets/js/18.81f8ab1c.js"><link rel="prefetch" href="/assets/js/19.9138e42f.js"><link rel="prefetch" href="/assets/js/20.ec2936d4.js"><link rel="prefetch" href="/assets/js/21.aa610240.js"><link rel="prefetch" href="/assets/js/22.d0d0743d.js"><link rel="prefetch" href="/assets/js/23.301fef0d.js"><link rel="prefetch" href="/assets/js/24.7f48e9b8.js"><link rel="prefetch" href="/assets/js/25.ac2321b5.js"><link rel="prefetch" href="/assets/js/26.1d752670.js"><link rel="prefetch" href="/assets/js/27.ddb8f43a.js"><link rel="prefetch" href="/assets/js/28.2331c964.js"><link rel="prefetch" href="/assets/js/29.a547d3f7.js"><link rel="prefetch" href="/assets/js/3.04cf94bb.js"><link rel="prefetch" href="/assets/js/30.1217e2ec.js"><link rel="prefetch" href="/assets/js/31.54a31e56.js"><link rel="prefetch" href="/assets/js/32.896655e5.js"><link rel="prefetch" href="/assets/js/33.43bf4cc4.js"><link rel="prefetch" href="/assets/js/4.b6d871a3.js"><link rel="prefetch" href="/assets/js/5.fdc44333.js"><link rel="prefetch" href="/assets/js/6.74824514.js"><link rel="prefetch" href="/assets/js/8.1f0615c9.js"><link rel="prefetch" href="/assets/js/9.77a53d12.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.5ab7af87.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">ElsaOOo Blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/about-me/" class="nav-link">
+  关于我
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/about-me/" class="nav-link">
+  关于我
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>JavaScript</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>react源码阅读</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/react-source-code/memo.html" class="sidebar-link">React.memo</a></li><li><a href="/react-source-code/ref-lazy.html" class="sidebar-link">React.createRef</a></li><li><a href="/react-source-code/createElement.html" aria-current="page" class="active sidebar-link">React.createElement</a></li><li><a href="/react-source-code/react-router.html" class="sidebar-link">react-router 源码阅读</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>数据结构与算法</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>electron 实战</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>js正则</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Java学习</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="react-createelement"><a href="#react-createelement" class="header-anchor">#</a> React.createElement</h1> <p><em>文章引用请注明出处</em></p> <p>我们在 react 项目中写的 jsx 代码经过 babel 编译后会变成普通的 js 代码：</p> <div class="language-jsx extra-class"><pre class="language-jsx"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">className</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>page<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Header</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text"> Hello, This is React </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Header</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">Start to learn right now!</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+  Right Reserve.
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>👇 babel 转换</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code>React<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span>
+  <span class="token string">&quot;div&quot;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    className<span class="token operator">:</span> <span class="token string">&quot;page&quot;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  React<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span>Header<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token string">&quot; Hello, This is React &quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  React<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">&quot;div&quot;</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token string">&quot;Start to learn right now!&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;Right Reserve.&quot;</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>createElement 函数的作用是生成 ReactElement，一个 ReactElement 是一个对象，它主要包含：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// $$typeof 属性可以唯一标识一个ReactElement元素</span>
+<span class="token keyword">const</span> <span class="token function-variable function">ReactElement</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">type<span class="token punctuation">,</span> key<span class="token punctuation">,</span> ref<span class="token punctuation">,</span> self<span class="token punctuation">,</span> source<span class="token punctuation">,</span> owner<span class="token punctuation">,</span> props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> element <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token comment">// This tag allows us to uniquely identify this as a React Element</span>
+    $$<span class="token keyword">typeof</span><span class="token operator">:</span> <span class="token constant">REACT_ELEMENT_TYPE</span><span class="token punctuation">,</span>
+
+    <span class="token comment">// Built-in properties that belong on the element</span>
+    type<span class="token operator">:</span> type<span class="token punctuation">,</span>
+    key<span class="token operator">:</span> key<span class="token punctuation">,</span>
+    ref<span class="token operator">:</span> ref<span class="token punctuation">,</span>
+    props<span class="token operator">:</span> props<span class="token punctuation">,</span>
+
+    <span class="token comment">// Record the component responsible for creating this element.</span>
+    _owner<span class="token operator">:</span> owner<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> element<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p>那 createElement 是在什么时候被执行的呢？</p> <p><strong>是 render 函数被调用的时候执行。</strong></p> <p>从刚才 babel 转换后的代码中可以看到 Children 类型有 String、原生 DOM 节点的 element、React components (自定义组件的 element)，其他还有 false、null、undefined、number 这些都是 ReactElement，children 类型还可以是一个数组(在 render 中使用 map 的时候)。</p> <p>所以在调用 creatElement 后得到了 ReactElement 类型的一个对象，接着根据这个对象生成真实的 dom 元素</p> <p><img src="/assets/img/createElement.3cb2d0bd.png" alt="image-20200806211946726"></p> <p>然后直接操作浏览器 DOM 元素，将元素挂载上去。</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">2020/8/6 下午9:33:46</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/react-source-code/ref-lazy.html" class="prev">
+        React.createRef
+      </a></span> <span class="next"><a href="/react-source-code/react-router.html">
+        react-router 源码阅读
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.996a1042.js" defer></script><script src="/assets/js/2.428c6b5b.js" defer></script><script src="/assets/js/7.dea111ea.js" defer></script>
+  </body>
+</html>

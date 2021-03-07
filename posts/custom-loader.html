@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Webpack custom loader | ElsaOOo Blog</title>
+    <meta name="generator" content="VuePress 1.5.0">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="description" content="webpack webpack 自定义loader">
+    <meta property="article:modified_time" content="null">
+    <meta property="og:site_name" content="ElsaOOo Blog">
+    <meta property="og:title" content="Webpack custom loader">
+    <meta property="og:description" content="webpack webpack 自定义loader">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="/posts/custom-loader.html">
+    <meta name="twitter:title" content="Webpack custom loader">
+    <meta name="twitter:description" content="webpack webpack 自定义loader">
+    <meta name="twitter:url" content="/posts/custom-loader.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preload" href="/assets/css/0.styles.5ab7af87.css" as="style"><link rel="preload" href="/assets/js/app.996a1042.js" as="script"><link rel="preload" href="/assets/js/2.428c6b5b.js" as="script"><link rel="preload" href="/assets/js/23.301fef0d.js" as="script"><link rel="prefetch" href="/assets/js/10.6868a405.js"><link rel="prefetch" href="/assets/js/11.d18925ff.js"><link rel="prefetch" href="/assets/js/12.1f1e59b2.js"><link rel="prefetch" href="/assets/js/13.877b4336.js"><link rel="prefetch" href="/assets/js/14.d32fc3c4.js"><link rel="prefetch" href="/assets/js/15.1b863f8f.js"><link rel="prefetch" href="/assets/js/16.7695612e.js"><link rel="prefetch" href="/assets/js/17.b593c7cf.js"><link rel="prefetch" href="/assets/js/18.81f8ab1c.js"><link rel="prefetch" href="/assets/js/19.9138e42f.js"><link rel="prefetch" href="/assets/js/20.ec2936d4.js"><link rel="prefetch" href="/assets/js/21.aa610240.js"><link rel="prefetch" href="/assets/js/22.d0d0743d.js"><link rel="prefetch" href="/assets/js/24.7f48e9b8.js"><link rel="prefetch" href="/assets/js/25.ac2321b5.js"><link rel="prefetch" href="/assets/js/26.1d752670.js"><link rel="prefetch" href="/assets/js/27.ddb8f43a.js"><link rel="prefetch" href="/assets/js/28.2331c964.js"><link rel="prefetch" href="/assets/js/29.a547d3f7.js"><link rel="prefetch" href="/assets/js/3.04cf94bb.js"><link rel="prefetch" href="/assets/js/30.1217e2ec.js"><link rel="prefetch" href="/assets/js/31.54a31e56.js"><link rel="prefetch" href="/assets/js/32.896655e5.js"><link rel="prefetch" href="/assets/js/33.43bf4cc4.js"><link rel="prefetch" href="/assets/js/4.b6d871a3.js"><link rel="prefetch" href="/assets/js/5.fdc44333.js"><link rel="prefetch" href="/assets/js/6.74824514.js"><link rel="prefetch" href="/assets/js/7.dea111ea.js"><link rel="prefetch" href="/assets/js/8.1f0615c9.js"><link rel="prefetch" href="/assets/js/9.77a53d12.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.5ab7af87.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">ElsaOOo Blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/about-me/" class="nav-link">
+  关于我
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/about-me/" class="nav-link">
+  关于我
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>JavaScript</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/javascript/acron-demo.html" class="sidebar-link">如何自己实现一个简单的tree shaking</a></li><li><a href="/javascript/data-types.html" class="sidebar-link">JavaScript 的数据类型</a></li><li><a href="/javascript/flatten-array.html" class="sidebar-link">JS 数组扁平化的几种方式</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>react源码阅读</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>数据结构与算法</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>electron 实战</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>js正则</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Java学习</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="webpack-custom-loader"><a href="#webpack-custom-loader" class="header-anchor">#</a> Webpack custom loader</h1> <p><em><em>文章引用请注明出处</em></em></p> <p>本文讲一下怎么制作自己的webpack 自定义loader。</p> <p>webpack  loader的作用是进行模块资源的转换，webpack打包只认识js，这个时候项目里使用到的图片资源、样式资源等就需要用loader来进行转换，转换成js，然后webpack再进行打包。</p> <p>那loader是怎样进行转换的呢，每种loader就是一个js文件，它接收到webpack传给它的“上下文”， 这个“上下文”就是项目源代码，loader拿到源代码，其实是一系列字符串，就可以进行操作转换了。</p> <p>下面看一个demo：</p> <p>比如我们有这样一个需求，就是在我们所有的打包文件中都加上 “ 公司名@年份” 这个注释句子。</p> <p>首先我们可以在webpack.config.js的同级目录下创建一个目录叫做<code>custom-loaders</code> ，然后在这个目录下创建一个自定义loader文件<code>add-copyright-loader.js</code></p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// `add-copyright-loader.js`</span>
+module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">content</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/** alibaba@2020 */\n</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>content<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p>loader文件是一个node模块， 以commonJs的方式导出一个函数，这个函数接收的参数有三个，content, map, meta，map和meta是可以省略的，其中content能拿到webpack处理源文件时每个文件对应的代码，它是string或者buffer（buffer可以转换成string），我们拿到这个字符串就能对源代码进行修改了，转换成我们需要的样子再返回回去。</p> <p>在webpack.config.js中把我们的自定义loader加进来：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// ... </span>
+module<span class="token operator">:</span> <span class="token punctuation">{</span>
+    rules<span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        test<span class="token operator">:</span> <span class="token regex">/\.(j|t)sx?$/</span><span class="token punctuation">,</span>
+        use<span class="token operator">:</span> <span class="token punctuation">[</span>
+          <span class="token punctuation">{</span>
+            loader<span class="token operator">:</span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>
+              __dirname<span class="token punctuation">,</span>
+              <span class="token string">&quot;./custom-loaders/add-copyright-loader.js&quot;</span>
+            <span class="token punctuation">)</span><span class="token punctuation">,</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        exclude<span class="token operator">:</span> <span class="token regex">/node_modules/</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+</code></pre></div><p>然后执行<code>npm run build</code>，我们就可以在打包文件中看到：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// dist/index.js 这个是webpack config mode 设置为'none'时打包的结果</span>
+<span class="token comment">/******/</span> <span class="token punctuation">(</span><span class="token punctuation">[</span>
+<span class="token comment">/* 0 */</span>
+<span class="token comment">/***/</span> <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">module<span class="token punctuation">,</span> __webpack_exports__<span class="token punctuation">,</span> __webpack_require__</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+<span class="token string">&quot;use strict&quot;</span><span class="token punctuation">;</span>
+__webpack_require__<span class="token punctuation">.</span><span class="token function">r</span><span class="token punctuation">(</span>__webpack_exports__<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">/* harmony import */</span> <span class="token keyword">var</span> _add__WEBPACK_IMPORTED_MODULE_0__ <span class="token operator">=</span> <span class="token function">__webpack_require__</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">/** alibaba@2020 */</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;test&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token comment">/***/</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token comment">/* 1 */</span>
+<span class="token comment">/***/</span> <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">module<span class="token punctuation">,</span> __webpack_exports__<span class="token punctuation">,</span> __webpack_require__</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+<span class="token string">&quot;use strict&quot;</span><span class="token punctuation">;</span>
+__webpack_require__<span class="token punctuation">.</span><span class="token function">r</span><span class="token punctuation">(</span>__webpack_exports__<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">/* harmony export (binding) */</span> __webpack_require__<span class="token punctuation">.</span><span class="token function">d</span><span class="token punctuation">(</span>__webpack_exports__<span class="token punctuation">,</span> <span class="token string">&quot;add&quot;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> add<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">/** alibaba@2020 */</span>
+<span class="token keyword">const</span> <span class="token function-variable function">add</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>
+
+
+<span class="token comment">/***/</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment">/******/</span> <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>总结：webpack loader 其实就是对资源文件的转换，从上一个laoder拿到结果，转换后再返回给下一个loader，所以在配置文件中要注意loader的顺序。</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">2020/7/31 上午9:20:08</span></div></footer> <!----> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.996a1042.js" defer></script><script src="/assets/js/2.428c6b5b.js" defer></script><script src="/assets/js/23.301fef0d.js" defer></script>
+  </body>
+</html>

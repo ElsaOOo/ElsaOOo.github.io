@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>React.createRef | ElsaOOo Blog</title>
+    <meta name="generator" content="VuePress 1.5.0">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="description" content="react 源码解析，react creatRef react lazy">
+    <meta property="article:modified_time" content="null">
+    <meta property="og:site_name" content="ElsaOOo Blog">
+    <meta property="og:title" content="React.createRef">
+    <meta property="og:description" content="react 源码解析，react creatRef react lazy">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="/react-source-code/ref-lazy.html">
+    <meta name="twitter:title" content="React.createRef">
+    <meta name="twitter:description" content="react 源码解析，react creatRef react lazy">
+    <meta name="twitter:url" content="/react-source-code/ref-lazy.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preload" href="/assets/css/0.styles.5ab7af87.css" as="style"><link rel="preload" href="/assets/js/app.996a1042.js" as="script"><link rel="preload" href="/assets/js/2.428c6b5b.js" as="script"><link rel="preload" href="/assets/js/31.54a31e56.js" as="script"><link rel="prefetch" href="/assets/js/10.6868a405.js"><link rel="prefetch" href="/assets/js/11.d18925ff.js"><link rel="prefetch" href="/assets/js/12.1f1e59b2.js"><link rel="prefetch" href="/assets/js/13.877b4336.js"><link rel="prefetch" href="/assets/js/14.d32fc3c4.js"><link rel="prefetch" href="/assets/js/15.1b863f8f.js"><link rel="prefetch" href="/assets/js/16.7695612e.js"><link rel="prefetch" href="/assets/js/17.b593c7cf.js"><link rel="prefetch" href="/assets/js/18.81f8ab1c.js"><link rel="prefetch" href="/assets/js/19.9138e42f.js"><link rel="prefetch" href="/assets/js/20.ec2936d4.js"><link rel="prefetch" href="/assets/js/21.aa610240.js"><link rel="prefetch" href="/assets/js/22.d0d0743d.js"><link rel="prefetch" href="/assets/js/23.301fef0d.js"><link rel="prefetch" href="/assets/js/24.7f48e9b8.js"><link rel="prefetch" href="/assets/js/25.ac2321b5.js"><link rel="prefetch" href="/assets/js/26.1d752670.js"><link rel="prefetch" href="/assets/js/27.ddb8f43a.js"><link rel="prefetch" href="/assets/js/28.2331c964.js"><link rel="prefetch" href="/assets/js/29.a547d3f7.js"><link rel="prefetch" href="/assets/js/3.04cf94bb.js"><link rel="prefetch" href="/assets/js/30.1217e2ec.js"><link rel="prefetch" href="/assets/js/32.896655e5.js"><link rel="prefetch" href="/assets/js/33.43bf4cc4.js"><link rel="prefetch" href="/assets/js/4.b6d871a3.js"><link rel="prefetch" href="/assets/js/5.fdc44333.js"><link rel="prefetch" href="/assets/js/6.74824514.js"><link rel="prefetch" href="/assets/js/7.dea111ea.js"><link rel="prefetch" href="/assets/js/8.1f0615c9.js"><link rel="prefetch" href="/assets/js/9.77a53d12.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.5ab7af87.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">ElsaOOo Blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/about-me/" class="nav-link">
+  关于我
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/about-me/" class="nav-link">
+  关于我
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>JavaScript</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>react源码阅读</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/react-source-code/memo.html" class="sidebar-link">React.memo</a></li><li><a href="/react-source-code/ref-lazy.html" aria-current="page" class="active sidebar-link">React.createRef</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/react-source-code/ref-lazy.html#react-createref" class="sidebar-link">React.createRef</a></li><li class="sidebar-sub-header"><a href="/react-source-code/ref-lazy.html#react-lazy" class="sidebar-link">React.lazy</a></li></ul></li><li><a href="/react-source-code/createElement.html" class="sidebar-link">React.createElement</a></li><li><a href="/react-source-code/react-router.html" class="sidebar-link">react-router 源码阅读</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>数据结构与算法</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>electron 实战</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>js正则</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Java学习</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="react-createref"><a href="#react-createref" class="header-anchor">#</a> React.createRef</h2> <p>这个顶层 API 是帮助我们获取到真实的 dom 元素，它的简单用法：在构造组件时，通常将 Refs 分配给实例属性，这样在整个组件中引用它们。</p> <div class="language-react extra-class"><pre class="language-text"><code>class MyInput extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.inputRef = React.createRef();
+  }
+
+  return (
+  	&lt;input ref={inputRef} /&gt;
+  )
+}
+</code></pre></div><p>这样在这个组件 didMount 的时候，我们通过 inputRef.current 就能拿到这个 input 元素的真实 dom 节点了。</p> <p>它的源码也很简单：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// an immutable object with a single mutable value</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">createRef</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> RefObject <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> refObject <span class="token operator">=</span> <span class="token punctuation">{</span>
+    current<span class="token operator">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>__DEV__<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Object<span class="token punctuation">.</span><span class="token function">seal</span><span class="token punctuation">(</span>refObject<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> refObject<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>作者源码注释写的是这个函数返回一个不变的对象，这个对象有一个可变的 current 属性。</p> <p>React.createRef 是用在类组件里面的，<strong>不能在函数组件上使用 <code>ref</code> 属性，因为它们没有实例</strong>。</p> <p>不能在函数组件上使用 ref 的意思是：</p> <div class="language-react extra-class"><pre class="language-text"><code>class Demo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.childRef = React.createRef();
+  }
+
+  return (
+  	// 这样在函数组件上使用createRef是没有作用的
+  	&lt;Child ref={this.childRef} /&gt;
+  )
+
+}
+
+const Child = () =&gt; {
+  return (
+  	&lt;input type=&quot;text&quot; /&gt;
+  )
+}
+</code></pre></div><p>如果要在函数组件上使用<code>ref</code> ，可以使用<code>forwardRef</code> ，或者将该函数组件转换成 class 组件。</p> <p>在 hooks 中，<code>useRef</code>的函数签名是：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code>useRef<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">&gt;</span><span class="token punctuation">(</span>initialValue<span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token punctuation">{</span>current<span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">}</span>
+</code></pre></div><p>和 createRef 的返回值一样，只不过这里多了一个参数，但是这个参数又没有用到。</p> <h2 id="react-lazy"><a href="#react-lazy" class="header-anchor">#</a> React.lazy</h2> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// lazy接受一个函数，这个函数动态调用import()。返回一个Promise，该Promise需要resolve一个default export的React组件</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> lazy<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token punctuation">,</span> <span class="token constant">R</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token function-variable function">ctor</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> Thenable<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token punctuation">,</span> <span class="token constant">R</span><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator">:</span> LazyComponent<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> lazyType <span class="token operator">=</span> <span class="token punctuation">{</span>
+    $$<span class="token keyword">typeof</span><span class="token operator">:</span> <span class="token constant">REACT_LAZY_TYPE</span><span class="token punctuation">,</span>
+    _ctor<span class="token operator">:</span> ctor<span class="token punctuation">,</span>
+    <span class="token comment">// React uses these fields to store the result.</span>
+    _status<span class="token operator">:</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span>
+    _result<span class="token operator">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> lazyType<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>🌰：</p> <div class="language-react extra-class"><pre class="language-text"><code>const OtherComponent = React.lazy(() =&gt; import('./OtherComponent'));
+</code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">2020/7/2 下午11:37:51</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/react-source-code/memo.html" class="prev">
+        React.memo
+      </a></span> <span class="next"><a href="/react-source-code/createElement.html">
+        React.createElement
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.996a1042.js" defer></script><script src="/assets/js/2.428c6b5b.js" defer></script><script src="/assets/js/31.54a31e56.js" defer></script>
+  </body>
+</html>

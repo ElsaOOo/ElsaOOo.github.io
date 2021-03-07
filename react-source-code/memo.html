@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>React.memo | ElsaOOo Blog</title>
+    <meta name="generator" content="VuePress 1.5.0">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="description" content="react 源码解析，react momo">
+    <meta property="article:modified_time" content="null">
+    <meta property="og:site_name" content="ElsaOOo Blog">
+    <meta property="og:title" content="React.memo">
+    <meta property="og:description" content="react 源码解析，react momo">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="/react-source-code/memo.html">
+    <meta name="twitter:title" content="React.memo">
+    <meta name="twitter:description" content="react 源码解析，react momo">
+    <meta name="twitter:url" content="/react-source-code/memo.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preload" href="/assets/css/0.styles.5ab7af87.css" as="style"><link rel="preload" href="/assets/js/app.996a1042.js" as="script"><link rel="preload" href="/assets/js/2.428c6b5b.js" as="script"><link rel="preload" href="/assets/js/29.a547d3f7.js" as="script"><link rel="prefetch" href="/assets/js/10.6868a405.js"><link rel="prefetch" href="/assets/js/11.d18925ff.js"><link rel="prefetch" href="/assets/js/12.1f1e59b2.js"><link rel="prefetch" href="/assets/js/13.877b4336.js"><link rel="prefetch" href="/assets/js/14.d32fc3c4.js"><link rel="prefetch" href="/assets/js/15.1b863f8f.js"><link rel="prefetch" href="/assets/js/16.7695612e.js"><link rel="prefetch" href="/assets/js/17.b593c7cf.js"><link rel="prefetch" href="/assets/js/18.81f8ab1c.js"><link rel="prefetch" href="/assets/js/19.9138e42f.js"><link rel="prefetch" href="/assets/js/20.ec2936d4.js"><link rel="prefetch" href="/assets/js/21.aa610240.js"><link rel="prefetch" href="/assets/js/22.d0d0743d.js"><link rel="prefetch" href="/assets/js/23.301fef0d.js"><link rel="prefetch" href="/assets/js/24.7f48e9b8.js"><link rel="prefetch" href="/assets/js/25.ac2321b5.js"><link rel="prefetch" href="/assets/js/26.1d752670.js"><link rel="prefetch" href="/assets/js/27.ddb8f43a.js"><link rel="prefetch" href="/assets/js/28.2331c964.js"><link rel="prefetch" href="/assets/js/3.04cf94bb.js"><link rel="prefetch" href="/assets/js/30.1217e2ec.js"><link rel="prefetch" href="/assets/js/31.54a31e56.js"><link rel="prefetch" href="/assets/js/32.896655e5.js"><link rel="prefetch" href="/assets/js/33.43bf4cc4.js"><link rel="prefetch" href="/assets/js/4.b6d871a3.js"><link rel="prefetch" href="/assets/js/5.fdc44333.js"><link rel="prefetch" href="/assets/js/6.74824514.js"><link rel="prefetch" href="/assets/js/7.dea111ea.js"><link rel="prefetch" href="/assets/js/8.1f0615c9.js"><link rel="prefetch" href="/assets/js/9.77a53d12.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.5ab7af87.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">ElsaOOo Blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/about-me/" class="nav-link">
+  关于我
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/about-me/" class="nav-link">
+  关于我
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>JavaScript</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>react源码阅读</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/react-source-code/memo.html" aria-current="page" class="active sidebar-link">React.memo</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/react-source-code/ref-lazy.html" class="sidebar-link">React.createRef</a></li><li><a href="/react-source-code/createElement.html" class="sidebar-link">React.createElement</a></li><li><a href="/react-source-code/react-router.html" class="sidebar-link">react-router 源码阅读</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>数据结构与算法</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>electron 实战</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>js正则</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Java学习</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="react-memo"><a href="#react-memo" class="header-anchor">#</a> React.memo</h1> <p><em>文章引用请注明出处</em></p> <p>React.memo 是 React 的顶层 API 之一，React.memo 其实是一个高阶组件，它和 React.PureComponent 非常相似，但是<strong>只适用于函数组件</strong>。</p> <p>如果所用的函数组件在给定相同 props 的情况下渲染相同的结果，这时候可以使用 React.memo，来<strong>记忆</strong>组件渲染结果的方式从而提高组件的性能表现。使用 React.memo，React 将跳过渲染组件的操作并直接复用最近一次渲染的结果。</p> <p>但是，React.memo 仅检查 props 的变更，如果函数组件被<code>React.memo</code>包裹，且其实现中拥有<code>useState</code>或<code>useContext</code>的 hook，当 context 变化时，它仍会重新渲染。</p> <p>默认情况下其只会<strong>对复杂对象做浅层对比</strong>，如果你想要控制对比过程，那么请将自定义的比较函数通过第二个参数传入来实现。</p> <h3 id="源码"><a href="#源码" class="header-anchor">#</a> 源码</h3> <p><code>memo</code> 的位置在 packages/react/src/memo.js 中</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">function</span> memo<span class="token operator">&lt;</span>Props<span class="token operator">&gt;</span><span class="token punctuation">(</span>
+  type<span class="token operator">:</span> React$ElementType<span class="token punctuation">,</span>
+  compare<span class="token operator">?</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">oldProps<span class="token operator">:</span> Props<span class="token punctuation">,</span> newProps<span class="token operator">:</span> Props</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> boolean
+<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>__DEV__<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    $$<span class="token keyword">typeof</span><span class="token operator">:</span> <span class="token constant">REACT_MEMO_TYPE</span><span class="token punctuation">,</span>
+    type<span class="token punctuation">,</span>
+    compare<span class="token operator">:</span> compare <span class="token operator">===</span> <span class="token keyword">undefined</span> <span class="token operator">?</span> <span class="token keyword">null</span> <span class="token operator">:</span> compare<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>memo 的定义很简单，传入两个参数，第一个是 React 组件，第二个是一个比较函数，函数参数是旧的 props 和新的 props，返回值是 boolean，如果为 true 表示该组件不需要重新渲染，如果为 false 表示重新渲染该组件。</p> <h3 id="那这个和-react-usememo-有什么关系呢？"><a href="#那这个和-react-usememo-有什么关系呢？" class="header-anchor">#</a> 那这个和 React.useMemo 有什么关系呢？</h3> <p>没什么关系！</p> <p>因为这两个 api 里面都有 memo，我刚开始还以为它们之间有什么联系，但是他两的用处是不同的。</p> <p><code>useMemo</code> 的源码在 packages/react/src/ReactHooks.js 文件中，</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">useMemo</span><span class="token punctuation">(</span>
+  <span class="token function-variable function">create</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> mixed<span class="token punctuation">,</span>
+  inputs<span class="token operator">:</span> Array<span class="token operator">&lt;</span>mixed<span class="token operator">&gt;</span> <span class="token operator">|</span> <span class="token keyword">void</span> <span class="token operator">|</span> <span class="token keyword">null</span>
+<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> dispatcher <span class="token operator">=</span> <span class="token function">resolveDispatcher</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> dispatcher<span class="token punctuation">.</span><span class="token function">useMemo</span><span class="token punctuation">(</span>create<span class="token punctuation">,</span> inputs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><code>useMemo</code> 函数接收两个参数，第一个参数是一个函数，第二个参数是 使用前一个函数所涉及到的一些依赖项。</p> <p><code>useCallback</code> 的定义和这个很像：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">useCallback</span><span class="token punctuation">(</span>
+  <span class="token function-variable function">callback</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> mixed<span class="token punctuation">,</span>
+  inputs<span class="token operator">:</span> Array<span class="token operator">&lt;</span>mixed<span class="token operator">&gt;</span> <span class="token operator">|</span> <span class="token keyword">void</span> <span class="token operator">|</span> <span class="token keyword">null</span>
+<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> dispatcher <span class="token operator">=</span> <span class="token function">resolveDispatcher</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> dispatcher<span class="token punctuation">.</span><span class="token function">useCallback</span><span class="token punctuation">(</span>callback<span class="token punctuation">,</span> inputs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>他俩定义是一样的，但是函数签名有一点不同：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code>useCallback<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">&gt;</span><span class="token punctuation">(</span>callback<span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">,</span> deps<span class="token operator">:</span> Array<span class="token operator">&lt;</span>mixed<span class="token operator">&gt;</span> <span class="token operator">|</span> <span class="token keyword">void</span> <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">,</span>
+useMemo<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token function-variable function">nextCreate</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token constant">T</span><span class="token punctuation">,</span> deps<span class="token operator">:</span> Array<span class="token operator">&lt;</span>mixed<span class="token operator">&gt;</span> <span class="token operator">|</span> <span class="token keyword">void</span> <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">,</span>
+</code></pre></div><p><code>useCallback</code> 和 <code>useMemo</code> 都可缓存函数的引用或值，但从更细的使用角度来说，<code>useCallback</code> 缓存函数的引用，<code>useMemo</code> 缓存计算数据的值。</p> <h3 id="实例-🌰"><a href="#实例-🌰" class="header-anchor">#</a> 实例 🌰</h3> <div class="language-react extra-class"><pre class="language-text"><code>// 父组件
+const App = () =&gt; {
+  const [count, setCount] = useState(0);
+  const [count2, setCount2] = useState(0);
+  const handleClick = () =&gt; {
+    setCount(count + 1);
+  };
+  const handleClick2 = () =&gt; {
+    setCount2(count2 + 1);
+  };
+  return (
+    &lt;div className=&quot;app&quot;&gt;
+      &lt;div className=&quot;header&quot;&gt;Header&lt;/div&gt;
+      &lt;div className=&quot;content&quot;&gt;
+        &lt;div className=&quot;row&quot;&gt;
+          &lt;div&gt;count1: {count}&lt;/div&gt;
+          &lt;div&gt;count2: {count2}&lt;/div&gt;
+          &lt;div&gt;
+            &lt;button onClick={handleClick}&gt;count&lt;/button&gt;
+            &lt;button onClick={handleClick2}&gt;count2&lt;/button&gt;
+          &lt;/div&gt;
+          &lt;Child /&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+};
+
+export default App;
+
+// 子组件
+const Child = () =&gt; {
+  console.log(&quot;render child&quot;);
+  return &lt;div&gt;child&lt;/div&gt;;
+};
+
+export default React.memo(Child);
+</code></pre></div><p>这里的子组件 Child 如果没有用 React.memo 包裹，那么父组件每一次改变自身的 state，Child 组件都会跟着渲染一次。加上 React.memo 之后，如果没有额外传入 props 的情况下，Child 组件只会渲染第一次，随后父组件自身 state 的改变并不会影响子组件的渲染。、</p> <div class="language-react extra-class"><pre class="language-text"><code>&lt;Child parentCount={count} /&gt;
+</code></pre></div><p>这里的子组件接收父组件的一个 prop，这时候父组件的 count 变量每改变一次子组件也会跟着渲染一次，但是父组件的其他 state 变量的改变不会引起 Child 组件的重新渲染，这里只跟传入子组件的变量相关。 所以尽量子组件用到什么 prop 就传什么 prop，不要用...props 这样的形式把所有的都传给子组件。</p> <p>但是很多情况下，父组件传给子组件的不会简单就是一个基础类型的值，更多的是一个数组或者一个对象。</p> <div class="language-react extra-class"><pre class="language-text"><code>const App = () =&gt; {
+  const [value, setValue] = useState({
+    name: &quot;tom&quot;,
+    age: 20,
+  });
+  const handleClick = () =&gt; {
+    setValue((prev) =&gt; ({
+      ...prev,
+      age: prev.age + 1,
+    }));
+  };
+  return (
+    &lt;div className=&quot;app&quot;&gt;
+      &lt;div className=&quot;header&quot;&gt;Header&lt;/div&gt;
+      &lt;div className=&quot;content&quot;&gt;
+        &lt;div className=&quot;row&quot;&gt;
+          &lt;div&gt;value: {JSON.stringify(value)}&lt;/div&gt;
+          &lt;div&gt;
+            &lt;button onClick={handleClick}&gt;changeValue&lt;/button&gt;
+          &lt;/div&gt;
+          &lt;Child parentValue={value} /&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+};
+
+export default App;
+</code></pre></div><p>这时候每改变一次 value 中的某个属性的值，子组件就会渲染一次，如示例中所示，如果我们想要子组件的渲染和父组件的 age 属性的改变无关的话，我们可以给 React.memo 传入第二个参数，是一个函数：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code>type <span class="token function-variable function">compare</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">oldProps<span class="token punctuation">,</span> newProps</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> boolean<span class="token punctuation">;</span>
+</code></pre></div><p>根据这个 compare 函数的返回值来判断要不要渲染子组件，true 就不渲染，false 就渲染。</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">2020/7/4 上午9:17:01</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/javascript/flatten-array.html" class="prev">
+        JS 数组扁平化的几种方式
+      </a></span> <span class="next"><a href="/react-source-code/ref-lazy.html">
+        React.createRef
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.996a1042.js" defer></script><script src="/assets/js/2.428c6b5b.js" defer></script><script src="/assets/js/29.a547d3f7.js" defer></script>
+  </body>
+</html>
