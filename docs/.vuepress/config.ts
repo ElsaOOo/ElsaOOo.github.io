@@ -51,10 +51,11 @@ export default defineUserConfig<DefaultThemeOptions>({
         children: ["/java/basic-types.md", "/java/variable-constant.md"],
       },
     ],
-    markdown: {
-      code: {
-        lineNumbers: false
-      }
-    },
-  }
+    lastUpdated: false,
+  },
+  markdown: {
+    code: {
+      lineNumbers: false
+    }
+  },
 })
