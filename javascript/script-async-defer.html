@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <link rel="icon" href="/favicon.ico"><script src="/prism.js"></script><title>面试题之 script 标签中 async 和 defer 属性的区别 | ElsaOOo Blog</title><meta name="description" content="面试题之 script标签中async和defer属性的区别"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="VuePress 2.0.0-beta.22">
+    <link rel="preload" href="/assets/js/runtime~app.f8bce1fc.js" as="script"><link rel="preload" href="/assets/css/styles.5a529915.css" as="style"><link rel="preload" href="/assets/js/621.f75be8b1.js" as="script"><link rel="preload" href="/assets/js/app.cd85d261.js" as="script">
+    <link rel="stylesheet" href="/assets/css/styles.5a529915.css">
+  </head>
+  <body>
+    <div id="app"><!--[--><div class="global-layout"><header class="page-header"><div class="datetime"><span>login: </span><a href="/about-me" class="about-me">关于我</a></div><div class="input"><div class="block-1"><img src="/assets/img/mac.f535b1d3.svg" alt="mac.png" class="block-1-img"></div><div class="block-2"><img src="/assets/img/home.056909d2.svg" alt="home.png" class="block-2-img"><span class="path">~/javascript/script-async-defer.html</span></div><span class="angle"></span></div></header><div class="content-wrap theme-content"><!--[--><h1 id="面试题之-script-标签中-async-和-defer-属性的区别" tabindex="-1"><a class="header-anchor" href="#面试题之-script-标签中-async-和-defer-属性的区别" aria-hidden="true">#</a> 面试题之 script 标签中 async 和 defer 属性的区别</h1><p>最近在做网页性能优化方面的东西，用 chrome devTools 的性能检测工具 lighthouse 跑了一遍后，发现其中有一项是<strong>Efficiently load third-party JavaScript</strong>，就是我们在项目中用 script 标签引用的第三方库。</p><p>首先我们应该把这个 script 标签写在 body 里面，这样浏览器在加载 html 文档的时候就不会去解析 js，这样会阻止 html 的渲染。</p><p>怎么优化加载第三方脚本？</p><p>其中一种方式就是在 script 标签上加上<code>async</code> 或者 <code>defer</code>属性。</p><p>像这样：</p><div class="language-javascript ext-js"><pre class="language-javascript"><code>&lt;script async src=&quot;script.js&quot;&gt;
+
+&lt;script defer src=&quot;script.js&quot;&gt;
+</code></pre></div><h3 id="async" tabindex="-1"><a class="header-anchor" href="#async" aria-hidden="true">#</a> async</h3><p>async 属性的执行是在脚本下载完之后，在 window 的 load 事件发生之前。如果这个时候文档还没有解析完全意味着它们可以阻止 DOM 构建。</p><p><img src="/assets/img/script-async.c2889625.png" alt="script-async"></p><h3 id="defer" tabindex="-1"><a class="header-anchor" href="#defer" aria-hidden="true">#</a> defer</h3><p>defer 属性的执行是在文档完全解析完成后进行的，在 window 的 DOMContentLoaded 事件之前。defer 属性就可以保证它们执行是按照它们出现在 HTML 中的顺序来的，并且不会阻止主线程的渲染。</p><p><img src="/assets/img/script-defer.c7db4b80.png" alt="script-defer"></p><ul><li>如果这个脚本在加载早期要执行就可以用<code>async</code></li><li>如果这个脚本没那么重要就可以使用<code>defer</code></li></ul><!--]--></div></div><!--]--></div>
+    <script src="/assets/js/runtime~app.f8bce1fc.js" defer></script><script src="/assets/js/621.f75be8b1.js" defer></script><script src="/assets/js/app.cd85d261.js" defer></script>
+  </body>
+</html>

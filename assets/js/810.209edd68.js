@@ -1,0 +1,1 @@
+(self.webpackChunkmy_blog_next=self.webpackChunkmy_blog_next||[]).push([[810],{2810:(e,t,n)=>{"use strict";n.r(t),n.d(t,{default:()=>c});var u=n(6252),r=n(3577),a=n(2119);const c={setup:()=>({currentPath:(0,a.yj)().path}),render:function(e,t,n,a,c,s){return(0,u.wg)(),(0,u.j4)("div",null," no such page: "+(0,r.zw)(a.currentPath),1)}}}}]);

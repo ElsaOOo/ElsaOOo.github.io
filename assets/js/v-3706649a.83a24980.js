@@ -1,0 +1,1 @@
+(self.webpackChunkmy_blog_next=self.webpackChunkmy_blog_next||[]).push([[88],{1801:(t,e,n)=>{"use strict";n.r(e),n.d(e,{data:()=>r});const r={key:"v-3706649a",path:"/404.html",title:"",lang:"zh-CN",frontmatter:{layout:"404"},excerpt:"",headers:[]}},3881:(t,e,n)=>{"use strict";n.r(e),n.d(e,{default:()=>r});const r={render:function(t,e){return null}}}}]);
