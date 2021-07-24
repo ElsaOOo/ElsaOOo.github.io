@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
-    <link rel="icon" href="/favicon.ico"><script src="/prism.js" defer></script><title>react-router 源码阅读 | ElsaOOo Blog</title><meta name="description" content="react-router 源码解析"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="VuePress 2.0.0-beta.22">
-    <link rel="preload" href="/assets/js/runtime~app.38aa59d2.js" as="script"><link rel="preload" href="/assets/css/styles.22a48f6f.css" as="style"><link rel="preload" href="/assets/js/654.dab245bc.js" as="script"><link rel="preload" href="/assets/js/app.a97c72b7.js" as="script">
+    <link rel="icon" href="/favicon.ico"><title>react-router 源码阅读 | ElsaOOo Blog</title><meta name="description" content="react-router 源码解析"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="VuePress 2.0.0-beta.22">
+    <link rel="preload" href="/assets/js/runtime~app.c16be218.js" as="script"><link rel="preload" href="/assets/css/styles.22a48f6f.css" as="style"><link rel="preload" href="/assets/js/654.dab245bc.js" as="script"><link rel="preload" href="/assets/js/app.6dd2da62.js" as="script">
     <link rel="stylesheet" href="/assets/css/styles.22a48f6f.css">
   </head>
   <body>
@@ -262,6 +262,6 @@ class Route extends React.Component {
 }
 export default Route;
 </code></pre></div><p>Route组件就是渲染匹配上的路由对应的组件。这里渲染组件的方式有三种children、component、render，他们的先后顺序就是children、component、render，这在源码中用了一连串的三元运算符，其实也很好理解。</p><p>所以整体来说是，Router这个组件里面监听路由location的变化，一旦location发生了变化，就会使得Switch、Route这些引用了RouterContext的组件重新渲染，重新走一遍各自组件里面对应的逻辑，然后就匹配路由的组件渲染出来。这个思路还是比较清晰的，代码也比较好理解。</p><!--]--></div></div><!----><!--]--></div>
-    <script src="/assets/js/runtime~app.38aa59d2.js" defer></script><script src="/assets/js/654.dab245bc.js" defer></script><script src="/assets/js/app.a97c72b7.js" defer></script>
+    <script src="/assets/js/runtime~app.c16be218.js" defer></script><script src="/assets/js/654.dab245bc.js" defer></script><script src="/assets/js/app.6dd2da62.js" defer></script>
   </body>
 </html>

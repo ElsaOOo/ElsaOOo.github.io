@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
-    <link rel="icon" href="/favicon.ico"><script src="/prism.js" defer></script><title>React.memo | ElsaOOo Blog</title><meta name="description" content="react 源码解析，react momo"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="VuePress 2.0.0-beta.22">
-    <link rel="preload" href="/assets/js/runtime~app.38aa59d2.js" as="script"><link rel="preload" href="/assets/css/styles.22a48f6f.css" as="style"><link rel="preload" href="/assets/js/654.dab245bc.js" as="script"><link rel="preload" href="/assets/js/app.a97c72b7.js" as="script">
+    <link rel="icon" href="/favicon.ico"><title>React.memo | ElsaOOo Blog</title><meta name="description" content="react 源码解析，react momo"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="VuePress 2.0.0-beta.22">
+    <link rel="preload" href="/assets/js/runtime~app.c16be218.js" as="script"><link rel="preload" href="/assets/css/styles.22a48f6f.css" as="style"><link rel="preload" href="/assets/js/654.dab245bc.js" as="script"><link rel="preload" href="/assets/js/app.6dd2da62.js" as="script">
     <link rel="stylesheet" href="/assets/css/styles.22a48f6f.css">
   </head>
   <body>
@@ -103,6 +103,6 @@ export default React.memo(Child);
 export default App;
 </code></pre></div><p>这时候每改变一次 value 中的某个属性的值，子组件就会渲染一次，如示例中所示，如果我们想要子组件的渲染和父组件的 age 属性的改变无关的话，我们可以给 React.memo 传入第二个参数，是一个函数：</p><div class="language-javascript ext-js"><pre class="language-javascript"><code>type compare = (oldProps, newProps) =&gt; boolean;
 </code></pre></div><p>根据这个 compare 函数的返回值来判断要不要渲染子组件，true 就不渲染，false 就渲染。</p><!--]--></div></div><!----><!--]--></div>
-    <script src="/assets/js/runtime~app.38aa59d2.js" defer></script><script src="/assets/js/654.dab245bc.js" defer></script><script src="/assets/js/app.a97c72b7.js" defer></script>
+    <script src="/assets/js/runtime~app.c16be218.js" defer></script><script src="/assets/js/654.dab245bc.js" defer></script><script src="/assets/js/app.6dd2da62.js" defer></script>
   </body>
 </html>

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
-    <link rel="icon" href="/favicon.ico"><script src="/prism.js" defer></script><title>面试题之 script 标签中 async 和 defer 属性的区别 | ElsaOOo Blog</title><meta name="description" content="面试题之 script标签中async和defer属性的区别"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="VuePress 2.0.0-beta.22">
-    <link rel="preload" href="/assets/js/runtime~app.38aa59d2.js" as="script"><link rel="preload" href="/assets/css/styles.22a48f6f.css" as="style"><link rel="preload" href="/assets/js/654.dab245bc.js" as="script"><link rel="preload" href="/assets/js/app.a97c72b7.js" as="script">
+    <link rel="icon" href="/favicon.ico"><title>面试题之 script 标签中 async 和 defer 属性的区别 | ElsaOOo Blog</title><meta name="description" content="面试题之 script标签中async和defer属性的区别"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="VuePress 2.0.0-beta.22">
+    <link rel="preload" href="/assets/js/runtime~app.c16be218.js" as="script"><link rel="preload" href="/assets/css/styles.22a48f6f.css" as="style"><link rel="preload" href="/assets/js/654.dab245bc.js" as="script"><link rel="preload" href="/assets/js/app.6dd2da62.js" as="script">
     <link rel="stylesheet" href="/assets/css/styles.22a48f6f.css">
   </head>
   <body>
@@ -10,6 +10,6 @@
 
 &lt;script defer src=&quot;script.js&quot;&gt;
 </code></pre></div><h3 id="async" tabindex="-1"><a class="header-anchor" href="#async" aria-hidden="true">#</a> async</h3><p>async 属性的执行是在脚本下载完之后，在 window 的 load 事件发生之前。如果这个时候文档还没有解析完全意味着它们可以阻止 DOM 构建。</p><p><img src="/assets/img/script-async.c2889625.png" alt="script-async"></p><h3 id="defer" tabindex="-1"><a class="header-anchor" href="#defer" aria-hidden="true">#</a> defer</h3><p>defer 属性的执行是在文档完全解析完成后进行的，在 window 的 DOMContentLoaded 事件之前。defer 属性就可以保证它们执行是按照它们出现在 HTML 中的顺序来的，并且不会阻止主线程的渲染。</p><p><img src="/assets/img/script-defer.c7db4b80.png" alt="script-defer"></p><ul><li>如果这个脚本在加载早期要执行就可以用<code>async</code></li><li>如果这个脚本没那么重要就可以使用<code>defer</code></li></ul><!--]--></div></div><!----><!--]--></div>
-    <script src="/assets/js/runtime~app.38aa59d2.js" defer></script><script src="/assets/js/654.dab245bc.js" defer></script><script src="/assets/js/app.a97c72b7.js" defer></script>
+    <script src="/assets/js/runtime~app.c16be218.js" defer></script><script src="/assets/js/654.dab245bc.js" defer></script><script src="/assets/js/app.6dd2da62.js" defer></script>
   </body>
 </html>

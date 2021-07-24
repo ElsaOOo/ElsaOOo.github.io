@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
-    <link rel="icon" href="/favicon.ico"><script src="/prism.js" defer></script><title>React.createElement | ElsaOOo Blog</title><meta name="description" content="react 源码解析，react createElement"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="VuePress 2.0.0-beta.22">
-    <link rel="preload" href="/assets/js/runtime~app.38aa59d2.js" as="script"><link rel="preload" href="/assets/css/styles.22a48f6f.css" as="style"><link rel="preload" href="/assets/js/654.dab245bc.js" as="script"><link rel="preload" href="/assets/js/app.a97c72b7.js" as="script">
+    <link rel="icon" href="/favicon.ico"><title>React.createElement | ElsaOOo Blog</title><meta name="description" content="react 源码解析，react createElement"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="VuePress 2.0.0-beta.22">
+    <link rel="preload" href="/assets/js/runtime~app.c16be218.js" as="script"><link rel="preload" href="/assets/css/styles.22a48f6f.css" as="style"><link rel="preload" href="/assets/js/654.dab245bc.js" as="script"><link rel="preload" href="/assets/js/app.6dd2da62.js" as="script">
     <link rel="stylesheet" href="/assets/css/styles.22a48f6f.css">
   </head>
   <body>
@@ -39,6 +39,6 @@ const ReactElement = function (type, key, ref, self, source, owner, props) {
   return element;
 };
 </code></pre></div><p>那 createElement 是在什么时候被执行的呢？</p><p><strong>是 render 函数被调用的时候执行。</strong></p><p>从刚才 babel 转换后的代码中可以看到 Children 类型有 String、原生 DOM 节点的 element、React components (自定义组件的 element)，其他还有 false、null、undefined、number 这些都是 ReactElement，children 类型还可以是一个数组(在 render 中使用 map 的时候)。</p><p>所以在调用 creatElement 后得到了 ReactElement 类型的一个对象，接着根据这个对象生成真实的 dom 元素</p><p><img src="/assets/img/createElement.9a75d4eb.png" alt="image-20200806211946726"></p><p>然后直接操作浏览器 DOM 元素，将元素挂载上去。</p><!--]--></div></div><!----><!--]--></div>
-    <script src="/assets/js/runtime~app.38aa59d2.js" defer></script><script src="/assets/js/654.dab245bc.js" defer></script><script src="/assets/js/app.a97c72b7.js" defer></script>
+    <script src="/assets/js/runtime~app.c16be218.js" defer></script><script src="/assets/js/654.dab245bc.js" defer></script><script src="/assets/js/app.6dd2da62.js" defer></script>
   </body>
 </html>

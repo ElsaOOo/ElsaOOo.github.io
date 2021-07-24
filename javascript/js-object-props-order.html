@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
-    <link rel="icon" href="/favicon.ico"><script src="/prism.js" defer></script><title>js 中的对象属性有顺序么？ | ElsaOOo Blog</title><meta name="description" content="js 中的对象属性有顺序么？"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="VuePress 2.0.0-beta.22">
-    <link rel="preload" href="/assets/js/runtime~app.38aa59d2.js" as="script"><link rel="preload" href="/assets/css/styles.22a48f6f.css" as="style"><link rel="preload" href="/assets/js/654.dab245bc.js" as="script"><link rel="preload" href="/assets/js/app.a97c72b7.js" as="script">
+    <link rel="icon" href="/favicon.ico"><title>js 中的对象属性有顺序么？ | ElsaOOo Blog</title><meta name="description" content="js 中的对象属性有顺序么？"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="VuePress 2.0.0-beta.22">
+    <link rel="preload" href="/assets/js/runtime~app.c16be218.js" as="script"><link rel="preload" href="/assets/css/styles.22a48f6f.css" as="style"><link rel="preload" href="/assets/js/654.dab245bc.js" as="script"><link rel="preload" href="/assets/js/app.6dd2da62.js" as="script">
     <link rel="stylesheet" href="/assets/css/styles.22a48f6f.css">
   </head>
   <body>
@@ -57,6 +57,6 @@ let b = { 测试: &quot;test&quot;, 1: &quot;nn&quot;, b: &quot;1&quot; };
 </code></pre></div><p>果然看起来是有顺序的。那这样的话，是按照什么顺序排的呢？</p><p>按照例子中的结果，对象属性先按数字型的排序，再是非数字型的属性。</p><p>如果属性中既存在数字型的属性，又存在对应字符型的属性，那么后出现的会覆盖之前出现的。</p><div class="language-javascript ext-js"><pre class="language-javascript"><code>let a = { b: &quot;1&quot;, 1: &quot;nn&quot;, 测试: &quot;test&quot;, 1: &quot;mm&quot; };
 // 输出 {1: &quot;mm&quot;, b: &quot;1&quot;, 测试: &quot;test&quot;}
 </code></pre></div><p>结合网上网友得出以下结论：</p><blockquote><p>Chrome 等新版浏览器 JS 引擎遵循新版 ECMA-262 5th,使用 for-in 语句遍历对象属性时遍历书序并非属性构建顺序。而 IE6、7、8 等旧版本浏览器的 JS 解析引擎遵循的是较老的 ECMA-262 3rd，属性遍历顺序由属性构建的顺序决定。Chrome 的 JS 引擎遍历对象属性时会遵循一个规律：<strong>它们会先提取所有 key 的 parseFloat 值为非负整数的属性，然后根据数字顺序对属性排序首先遍历出来，然后按照对象定义的顺序遍历余下的所有属性。</strong></p></blockquote><!--]--></div></div><!----><!--]--></div>
-    <script src="/assets/js/runtime~app.38aa59d2.js" defer></script><script src="/assets/js/654.dab245bc.js" defer></script><script src="/assets/js/app.a97c72b7.js" defer></script>
+    <script src="/assets/js/runtime~app.c16be218.js" defer></script><script src="/assets/js/654.dab245bc.js" defer></script><script src="/assets/js/app.6dd2da62.js" defer></script>
   </body>
 </html>

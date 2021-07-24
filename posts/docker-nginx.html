@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
-    <link rel="icon" href="/favicon.ico"><script src="/prism.js" defer></script><title>ElsaOOo Blog</title><meta name="description" content="ElsaOOo Blog, 前端笔记"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="VuePress 2.0.0-beta.22">
-    <link rel="preload" href="/assets/js/runtime~app.38aa59d2.js" as="script"><link rel="preload" href="/assets/css/styles.22a48f6f.css" as="style"><link rel="preload" href="/assets/js/654.dab245bc.js" as="script"><link rel="preload" href="/assets/js/app.a97c72b7.js" as="script">
+    <link rel="icon" href="/favicon.ico"><title>ElsaOOo Blog</title><meta name="description" content="ElsaOOo Blog, 前端笔记"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="VuePress 2.0.0-beta.22">
+    <link rel="preload" href="/assets/js/runtime~app.c16be218.js" as="script"><link rel="preload" href="/assets/css/styles.22a48f6f.css" as="style"><link rel="preload" href="/assets/js/654.dab245bc.js" as="script"><link rel="preload" href="/assets/js/app.6dd2da62.js" as="script">
     <link rel="stylesheet" href="/assets/css/styles.22a48f6f.css">
   </head>
   <body>
@@ -14,6 +14,6 @@
 </code></pre></div><p>这样我们在本地在本地就拷贝了一份 nginx 配置文件。</p><h3 id="将本地文件夹挂载到容器内部文件夹" tabindex="-1"><a class="header-anchor" href="#将本地文件夹挂载到容器内部文件夹" aria-hidden="true">#</a> 将本地文件夹挂载到容器内部文件夹</h3><p>将本地文件夹或者文件挂载到容器内部，方便我们随时调试，因为我们修改了本地文件，重启容器，容器就能读取到更新的内容。可以想象成容器内部文件夹有一个指针，指向了我们本地的文件夹，所以我们本地的变化，容器内部也能同步更新。使用-v 参数进行文件夹的挂载，前面的是本地的路径，后面的是容器内部的路径。</p><div class="language-bash ext-sh"><pre class="language-bash"><code>## 映射容器目录
 docker run -d -p 9091:80 --name nginx -v ~/Desktop/demos/server/nginx/www:/usr/share/nginx/html -v ~/Desktop/demos/server/nginx/conf/nginx.conf:/etc/nginx/nginx.conf -v ~/Desktop/demos/server/nginx/log:/var/log/nginx nginx:1.19
 </code></pre></div><p>再在~/Desktop/demos/server/nginx/www 文件夹下创建一个 index.html 文件，浏览器访问 localhost:9091 就能看到 index.html 的内容了。</p><p>接下来可以尝试更改 nginx 的配置，实验各种配置参数，进一步了解 nginx。</p><!--]--></div></div><!----><!--]--></div>
-    <script src="/assets/js/runtime~app.38aa59d2.js" defer></script><script src="/assets/js/654.dab245bc.js" defer></script><script src="/assets/js/app.a97c72b7.js" defer></script>
+    <script src="/assets/js/runtime~app.c16be218.js" defer></script><script src="/assets/js/654.dab245bc.js" defer></script><script src="/assets/js/app.6dd2da62.js" defer></script>
   </body>
 </html>
