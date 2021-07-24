@@ -1,10 +1,45 @@
-# 我的前端笔记!
+<RenderRouterView :routes="routesNames" :isDir="true" />
 
-[日常开发遇到的问题集合](../posts/daily-issues.md)  
-[一名开发者应该掌握的正则知识](../regex/regex-you-should-know.md)  
-[typescript 泛型应用(一)](../posts/ts-generic.md)  
-[Docker + Nginx 实践 (mac 版)](../posts/docker-nginx.md)  
-[rollup 初探](../posts/rollup-start.md)  
-[自己写一个简单的自定义 loader](../posts/custom-loader.md)  
-[面试题之 script 标签中 async 和 defer 属性的区别](../posts/script-async-defer.md)  
-[js 中的对象属性有顺序么？](../posts/js-object-props-order.md)
+
+<script>
+import {  reactive } from 'vue'
+const routes = [
+  {
+    name: 'JavaScript',
+    path: '/javascript'
+  },
+  {
+    name: 'Java基础',
+    path: '/java'
+  },
+  {
+    name: 'react源码阅读',
+    path: '/react-source-code'
+  },
+  {
+    name: '数据结构与算法',
+    path: '/algorithm'
+  },
+  {
+    name: 'js正则',
+    path: '/regex'
+  },
+  {
+    name: 'electron 实战',
+    path: '/electron'
+  },
+  {
+    name: '未分类',
+    path: '/posts'
+  },
+]
+
+export default {
+  setup() {
+    const routesNames = reactive(routes);
+    return {
+      routesNames
+    }
+  }
+}
+</script>

@@ -1,16 +1,20 @@
-
 <RenderRouterView :routes="routesNames" />
+
 
 <script>
 import {  reactive } from 'vue'
 const routes = [
   {
-    name: 'Java--基础类型',
-    path: '/java/basic-types'
+    name: '日常开发中遇到问题集合',
+    path: '/posts/daily-issues'
   },
   {
-    name: '变量与常量',
-    path: '/java/variable-constant'
+    name: 'Docker + Nginx 实践 (mac 版)',
+    path: '/posts/docker-nginx'
+  },
+  {
+    name: 'TypeScript 泛型应用(一)',
+    path: '/posts/ts-generic'
   },
 ]
 
