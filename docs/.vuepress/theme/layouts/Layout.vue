@@ -4,7 +4,7 @@
     <header class="page-header">
       <div class="datetime">
         <span>login: {{datetime}}</span>
-        <a href="/about-me" class="about-me">关于我</a>
+        <router-link to="/about-me" class="about-me">关于我</router-link>
       </div>
       <div class="input">
         <div class="block-1"><img :src="macLogoPic" alt="mac.png" class="block-1-img"></div>
