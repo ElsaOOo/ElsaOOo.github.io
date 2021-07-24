@@ -2,58 +2,11 @@
 <html lang="zh-CN">
   <head>
     <link rel="icon" href="/favicon.ico"><title>Webpack custom loader | ElsaOOo Blog</title><meta name="description" content="webpack webpack 自定义loader"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="VuePress 2.0.0-beta.22">
-    <link rel="preload" href="/assets/js/runtime~app.c16be218.js" as="script"><link rel="preload" href="/assets/css/styles.22a48f6f.css" as="style"><link rel="preload" href="/assets/js/654.dab245bc.js" as="script"><link rel="preload" href="/assets/js/app.6dd2da62.js" as="script">
+    <link rel="preload" href="/assets/js/runtime~app.952ec91b.js" as="script"><link rel="preload" href="/assets/css/styles.22a48f6f.css" as="style"><link rel="preload" href="/assets/js/654.7fb38cc2.js" as="script"><link rel="preload" href="/assets/js/app.c258e6f4.js" as="script">
     <link rel="stylesheet" href="/assets/css/styles.22a48f6f.css">
   </head>
   <body>
-    <div id="app"><!--[--><div class="global-layout"><header class="page-header"><div class="datetime"><span>login: </span><a href="/about-me" class="about-me">关于我</a></div><div class="input"><div class="block-1"><img src="/assets/img/mac.f535b1d3.svg" alt="mac.png" class="block-1-img"></div><div class="block-2"><img src="/assets/img/home.056909d2.svg" alt="home.png" class="block-2-img"><span class="path">~/javascript/custom-loader.html</span></div><span class="angle"></span></div></header><div class="content-wrap theme-content"><!--[--><h1 id="webpack-custom-loader" tabindex="-1"><a class="header-anchor" href="#webpack-custom-loader" aria-hidden="true">#</a> Webpack custom loader</h1><p><em><em>文章引用请注明出处</em></em></p><p>本文讲一下怎么制作自己的webpack 自定义loader。</p><p>webpack loader的作用是进行模块资源的转换，webpack打包只认识js，这个时候项目里使用到的图片资源、样式资源等就需要用loader来进行转换，转换成js，然后webpack再进行打包。</p><p>那loader是怎样进行转换的呢，每种loader就是一个js文件，它接收到webpack传给它的“上下文”， 这个“上下文”就是项目源代码，loader拿到源代码，其实是一系列字符串，就可以进行操作转换了。</p><p>下面看一个demo：</p><p>比如我们有这样一个需求，就是在我们所有的打包文件中都加上 “ 公司名@年份” 这个注释句子。</p><p>首先我们可以在webpack.config.js的同级目录下创建一个目录叫做<code>custom-loaders</code> ，然后在这个目录下创建一个自定义loader文件<code>add-copyright-loader.js</code></p><div class="language-javascript ext-js"><pre class="language-javascript"><code>// `add-copyright-loader.js`
-module.exports = function (content) {
-  return `/** alibaba@2020 */\n${content}`;
-};
-</code></pre></div><p>loader文件是一个node模块， 以commonJs的方式导出一个函数，这个函数接收的参数有三个，content, map, meta，map和meta是可以省略的，其中content能拿到webpack处理源文件时每个文件对应的代码，它是string或者buffer（buffer可以转换成string），我们拿到这个字符串就能对源代码进行修改了，转换成我们需要的样子再返回回去。</p><p>在webpack.config.js中把我们的自定义loader加进来：</p><div class="language-javascript ext-js"><pre class="language-javascript"><code>// ... 
-module: {
-    rules: [
-      {
-        test: /\.(j|t)sx?$/,
-        use: [
-          {
-            loader: path.resolve(
-              __dirname,
-              &quot;./custom-loaders/add-copyright-loader.js&quot;
-            ),
-          },
-        ],
-        exclude: /node_modules/,
-      },
-    ],
-  },
-</code></pre></div><p>然后执行<code>npm run build</code>，我们就可以在打包文件中看到：</p><div class="language-javascript ext-js"><pre class="language-javascript"><code>// dist/index.js 这个是webpack config mode 设置为&#39;none&#39;时打包的结果
-/******/ ([
-/* 0 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-&quot;use strict&quot;;
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _add__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-/** alibaba@2020 */
-
-console.log(&quot;test&quot;);
-
-
-/***/ }),
-/* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-&quot;use strict&quot;;
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, &quot;add&quot;, function() { return add; });
-/** alibaba@2020 */
-const add = (a, b) =&gt; a + b;
-
-
-/***/ })
-/******/ ]);
-</code></pre></div><p>总结：webpack loader 其实就是对资源文件的转换，从上一个laoder拿到结果，转换后再返回给下一个loader，所以在配置文件中要注意loader的顺序。</p><!--]--></div></div><!----><!--]--></div>
-    <script src="/assets/js/runtime~app.c16be218.js" defer></script><script src="/assets/js/654.dab245bc.js" defer></script><script src="/assets/js/app.6dd2da62.js" defer></script>
+    <div id="app"><!--[--><!----><!----><!--]--></div>
+    <script src="/assets/js/runtime~app.952ec91b.js" defer></script><script src="/assets/js/654.7fb38cc2.js" defer></script><script src="/assets/js/app.c258e6f4.js" defer></script>
   </body>
 </html>

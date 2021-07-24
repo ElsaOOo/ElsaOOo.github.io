@@ -2,107 +2,11 @@
 <html lang="zh-CN">
   <head>
     <link rel="icon" href="/favicon.ico"><title>React.memo | ElsaOOo Blog</title><meta name="description" content="react 源码解析，react momo"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="VuePress 2.0.0-beta.22">
-    <link rel="preload" href="/assets/js/runtime~app.c16be218.js" as="script"><link rel="preload" href="/assets/css/styles.22a48f6f.css" as="style"><link rel="preload" href="/assets/js/654.dab245bc.js" as="script"><link rel="preload" href="/assets/js/app.6dd2da62.js" as="script">
+    <link rel="preload" href="/assets/js/runtime~app.952ec91b.js" as="script"><link rel="preload" href="/assets/css/styles.22a48f6f.css" as="style"><link rel="preload" href="/assets/js/654.7fb38cc2.js" as="script"><link rel="preload" href="/assets/js/app.c258e6f4.js" as="script">
     <link rel="stylesheet" href="/assets/css/styles.22a48f6f.css">
   </head>
   <body>
-    <div id="app"><!--[--><div class="global-layout"><header class="page-header"><div class="datetime"><span>login: </span><a href="/about-me" class="about-me">关于我</a></div><div class="input"><div class="block-1"><img src="/assets/img/mac.f535b1d3.svg" alt="mac.png" class="block-1-img"></div><div class="block-2"><img src="/assets/img/home.056909d2.svg" alt="home.png" class="block-2-img"><span class="path">~/react-source-code/memo.html</span></div><span class="angle"></span></div></header><div class="content-wrap theme-content"><!--[--><h1 id="react-memo" tabindex="-1"><a class="header-anchor" href="#react-memo" aria-hidden="true">#</a> React.memo</h1><p><em>文章引用请注明出处</em></p><p>React.memo 是 React 的顶层 API 之一，React.memo 其实是一个高阶组件，它和 React.PureComponent 非常相似，但是<strong>只适用于函数组件</strong>。</p><p>如果所用的函数组件在给定相同 props 的情况下渲染相同的结果，这时候可以使用 React.memo，来<strong>记忆</strong>组件渲染结果的方式从而提高组件的性能表现。使用 React.memo，React 将跳过渲染组件的操作并直接复用最近一次渲染的结果。</p><p>但是，React.memo 仅检查 props 的变更，如果函数组件被<code>React.memo</code>包裹，且其实现中拥有<code>useState</code>或<code>useContext</code>的 hook，当 context 变化时，它仍会重新渲染。</p><p>默认情况下其只会<strong>对复杂对象做浅层对比</strong>，如果你想要控制对比过程，那么请将自定义的比较函数通过第二个参数传入来实现。</p><h3 id="源码" tabindex="-1"><a class="header-anchor" href="#源码" aria-hidden="true">#</a> 源码</h3><p><code>memo</code> 的位置在 packages/react/src/memo.js 中</p><div class="language-javascript ext-js"><pre class="language-javascript"><code>export default function memo&lt;Props&gt;(
-  type: React$ElementType,
-  compare?: (oldProps: Props, newProps: Props) =&gt; boolean
-) {
-  if (__DEV__) {
-    // ...
-  }
-  return {
-    $typeof: REACT_MEMO_TYPE,
-    type,
-    compare: compare === undefined ? null : compare,
-  };
-}
-</code></pre></div><p>memo 的定义很简单，传入两个参数，第一个是 React 组件，第二个是一个比较函数，函数参数是旧的 props 和新的 props，返回值是 boolean，如果为 true 表示该组件不需要重新渲染，如果为 false 表示重新渲染该组件。</p><h3 id="那这个和-react-usememo-有什么关系呢" tabindex="-1"><a class="header-anchor" href="#那这个和-react-usememo-有什么关系呢" aria-hidden="true">#</a> 那这个和 React.useMemo 有什么关系呢？</h3><p>没什么关系！</p><p>因为这两个 api 里面都有 memo，我刚开始还以为它们之间有什么联系，但是他两的用处是不同的。</p><p><code>useMemo</code> 的源码在 packages/react/src/ReactHooks.js 文件中，</p><div class="language-javascript ext-js"><pre class="language-javascript"><code>export function useMemo(
-  create: () =&gt; mixed,
-  inputs: Array&lt;mixed&gt; | void | null
-) {
-  const dispatcher = resolveDispatcher();
-  return dispatcher.useMemo(create, inputs);
-}
-</code></pre></div><p><code>useMemo</code> 函数接收两个参数，第一个参数是一个函数，第二个参数是 使用前一个函数所涉及到的一些依赖项。</p><p><code>useCallback</code> 的定义和这个很像：</p><div class="language-javascript ext-js"><pre class="language-javascript"><code>export function useCallback(
-  callback: () =&gt; mixed,
-  inputs: Array&lt;mixed&gt; | void | null
-) {
-  const dispatcher = resolveDispatcher();
-  return dispatcher.useCallback(callback, inputs);
-}
-</code></pre></div><p>他俩定义是一样的，但是函数签名有一点不同：</p><div class="language-javascript ext-js"><pre class="language-javascript"><code>useCallback&lt;T&gt;(callback: T, deps: Array&lt;mixed&gt; | void | null): T,
-useMemo&lt;T&gt;(nextCreate: () =&gt; T, deps: Array&lt;mixed&gt; | void | null): T,
-</code></pre></div><p><code>useCallback</code> 和 <code>useMemo</code> 都可缓存函数的引用或值，但从更细的使用角度来说，<code>useCallback</code> 缓存函数的引用，<code>useMemo</code> 缓存计算数据的值。</p><h3 id="实例-🌰" tabindex="-1"><a class="header-anchor" href="#实例-🌰" aria-hidden="true">#</a> 实例 🌰</h3><div class="language-react ext-react"><pre class="language-react"><code>// 父组件
-const App = () =&gt; {
-  const [count, setCount] = useState(0);
-  const [count2, setCount2] = useState(0);
-  const handleClick = () =&gt; {
-    setCount(count + 1);
-  };
-  const handleClick2 = () =&gt; {
-    setCount2(count2 + 1);
-  };
-  return (
-    &lt;div className=&quot;app&quot;&gt;
-      &lt;div className=&quot;header&quot;&gt;Header&lt;/div&gt;
-      &lt;div className=&quot;content&quot;&gt;
-        &lt;div className=&quot;row&quot;&gt;
-          &lt;div&gt;count1: {count}&lt;/div&gt;
-          &lt;div&gt;count2: {count2}&lt;/div&gt;
-          &lt;div&gt;
-            &lt;button onClick={handleClick}&gt;count&lt;/button&gt;
-            &lt;button onClick={handleClick2}&gt;count2&lt;/button&gt;
-          &lt;/div&gt;
-          &lt;Child /&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  );
-};
-
-export default App;
-
-// 子组件
-const Child = () =&gt; {
-  console.log(&quot;render child&quot;);
-  return &lt;div&gt;child&lt;/div&gt;;
-};
-
-export default React.memo(Child);
-</code></pre></div><p>这里的子组件 Child 如果没有用 React.memo 包裹，那么父组件每一次改变自身的 state，Child 组件都会跟着渲染一次。加上 React.memo 之后，如果没有额外传入 props 的情况下，Child 组件只会渲染第一次，随后父组件自身 state 的改变并不会影响子组件的渲染。、</p><div class="language-react ext-react"><pre class="language-react"><code>&lt;Child parentCount={count} /&gt;
-</code></pre></div><p>这里的子组件接收父组件的一个 prop，这时候父组件的 count 变量每改变一次子组件也会跟着渲染一次，但是父组件的其他 state 变量的改变不会引起 Child 组件的重新渲染，这里只跟传入子组件的变量相关。 所以尽量子组件用到什么 prop 就传什么 prop，不要用...props 这样的形式把所有的都传给子组件。</p><p>但是很多情况下，父组件传给子组件的不会简单就是一个基础类型的值，更多的是一个数组或者一个对象。</p><div class="language-react ext-react"><pre class="language-react"><code>const App = () =&gt; {
-  const [value, setValue] = useState({
-    name: &quot;tom&quot;,
-    age: 20,
-  });
-  const handleClick = () =&gt; {
-    setValue((prev) =&gt; ({
-      ...prev,
-      age: prev.age + 1,
-    }));
-  };
-  return (
-    &lt;div className=&quot;app&quot;&gt;
-      &lt;div className=&quot;header&quot;&gt;Header&lt;/div&gt;
-      &lt;div className=&quot;content&quot;&gt;
-        &lt;div className=&quot;row&quot;&gt;
-          &lt;div&gt;value: {JSON.stringify(value)}&lt;/div&gt;
-          &lt;div&gt;
-            &lt;button onClick={handleClick}&gt;changeValue&lt;/button&gt;
-          &lt;/div&gt;
-          &lt;Child parentValue={value} /&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  );
-};
-
-export default App;
-</code></pre></div><p>这时候每改变一次 value 中的某个属性的值，子组件就会渲染一次，如示例中所示，如果我们想要子组件的渲染和父组件的 age 属性的改变无关的话，我们可以给 React.memo 传入第二个参数，是一个函数：</p><div class="language-javascript ext-js"><pre class="language-javascript"><code>type compare = (oldProps, newProps) =&gt; boolean;
-</code></pre></div><p>根据这个 compare 函数的返回值来判断要不要渲染子组件，true 就不渲染，false 就渲染。</p><!--]--></div></div><!----><!--]--></div>
-    <script src="/assets/js/runtime~app.c16be218.js" defer></script><script src="/assets/js/654.dab245bc.js" defer></script><script src="/assets/js/app.6dd2da62.js" defer></script>
+    <div id="app"><!--[--><!----><!----><!--]--></div>
+    <script src="/assets/js/runtime~app.952ec91b.js" defer></script><script src="/assets/js/654.7fb38cc2.js" defer></script><script src="/assets/js/app.c258e6f4.js" defer></script>
   </body>
 </html>

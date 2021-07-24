@@ -2,72 +2,11 @@
 <html lang="zh-CN">
   <head>
     <link rel="icon" href="/favicon.ico"><title>setState 是同步还是异步的？ | ElsaOOo Blog</title><meta name="description" content="react 源码解析，react setState"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="VuePress 2.0.0-beta.22">
-    <link rel="preload" href="/assets/js/runtime~app.c16be218.js" as="script"><link rel="preload" href="/assets/css/styles.22a48f6f.css" as="style"><link rel="preload" href="/assets/js/654.dab245bc.js" as="script"><link rel="preload" href="/assets/js/app.6dd2da62.js" as="script">
+    <link rel="preload" href="/assets/js/runtime~app.952ec91b.js" as="script"><link rel="preload" href="/assets/css/styles.22a48f6f.css" as="style"><link rel="preload" href="/assets/js/654.7fb38cc2.js" as="script"><link rel="preload" href="/assets/js/app.c258e6f4.js" as="script">
     <link rel="stylesheet" href="/assets/css/styles.22a48f6f.css">
   </head>
   <body>
-    <div id="app"><!--[--><div class="global-layout"><header class="page-header"><div class="datetime"><span>login: </span><a href="/about-me" class="about-me">关于我</a></div><div class="input"><div class="block-1"><img src="/assets/img/mac.f535b1d3.svg" alt="mac.png" class="block-1-img"></div><div class="block-2"><img src="/assets/img/home.056909d2.svg" alt="home.png" class="block-2-img"><span class="path">~/react-source-code/setState.html</span></div><span class="angle"></span></div></header><div class="content-wrap theme-content"><!--[--><h1 id="setstate-是同步还是异步的" tabindex="-1"><a class="header-anchor" href="#setstate-是同步还是异步的" aria-hidden="true">#</a> setState 是同步还是异步的？</h1><blockquote><p><strong>本文用的react版本是 17.0.1</strong></p></blockquote><p>一般setState是对class components来说的。</p><p>看一下基础代码：</p><div class="language-jsx ext-jsx"><pre class="language-jsx"><code>import React from &#39;react&#39;
-
-class App extends React.Component {
-  state = {
-    num: 0,
-    text: &#39;&#39;
-  }
-
-  handleClick = () =&gt; {
-    console.log(&#39;before&#39;, this.state.num);
-    this.setState({
-      num: this.state.num + 1
-    })
-    console.log(&#39;after&#39;, this.state.num);
-  }
-
-  render() {
-    console.log(&#39;render&#39;);
-    const { num } = this.state;
-    return (
-      &lt;div&gt;
-        &lt;div&gt;{num}&lt;/div&gt;
-        &lt;div&gt;
-          &lt;button onClick={this.handleClick}&gt;加1&lt;/button&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    )
-  }
-}
-
-export default App;
-</code></pre></div><p>这段代码在控制台中的输出结果是：</p><div class="language-jsx ext-jsx"><pre class="language-jsx"><code>before 0
-after 0
-render
-</code></pre></div><p>这里setState是异步的。造成这个的原因是react中有性能优化机制，叫做<code>batchedUpdates</code>，从字面意思来看就是批量更新。 比如我们刚才点击按钮触发的click事件中，有多次setState操作，react会将多次setState操作合并为一次更新，这样render就只会执行一次，从而减少不必要的渲染。</p><h3 id="那么批处理是如何实现的呢" tabindex="-1"><a class="header-anchor" href="#那么批处理是如何实现的呢" aria-hidden="true">#</a> 那么批处理是如何实现的呢？</h3><p>react源码中</p><div class="language-javascript ext-js"><pre class="language-javascript"><code>// the renderer. Such as when we&#39;re dispatching events or if third party
-// libraries need to call batchedUpdates. Eventually, this API will go away when
-// everything is batched by default. We&#39;ll then have a similar API to opt-out of
-// scheduled work and instead do synchronous work.
-// Defaults
-
-var batchedUpdatesImpl = function (fn, bookkeeping) {
-  return fn(bookkeeping);
-};
-// 
-var isInsideEventHandler = false;
-function batchedUpdates(fn, bookkeeping) {
-  if (isInsideEventHandler) {
-    // If we are currently inside another batch, we need to wait until it
-    // fully completes before restoring state.
-    return fn(bookkeeping);
-  }
-
-  isInsideEventHandler = true;
-
-  try {
-    return batchedUpdatesImpl(fn, bookkeeping);
-  } finally {
-    isInsideEventHandler = false;
-    finishEventHandler();
-  }
-}
-</code></pre></div><!--]--></div></div><!----><!--]--></div>
-    <script src="/assets/js/runtime~app.c16be218.js" defer></script><script src="/assets/js/654.dab245bc.js" defer></script><script src="/assets/js/app.6dd2da62.js" defer></script>
+    <div id="app"><!--[--><!----><!----><!--]--></div>
+    <script src="/assets/js/runtime~app.952ec91b.js" defer></script><script src="/assets/js/654.7fb38cc2.js" defer></script><script src="/assets/js/app.c258e6f4.js" defer></script>
   </body>
 </html>

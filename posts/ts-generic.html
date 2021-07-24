@@ -2,104 +2,11 @@
 <html lang="zh-CN">
   <head>
     <link rel="icon" href="/favicon.ico"><title>TypeScript 泛型应用(一) | ElsaOOo Blog</title><meta name="description" content="ts typescript 泛型"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="VuePress 2.0.0-beta.22">
-    <link rel="preload" href="/assets/js/runtime~app.c16be218.js" as="script"><link rel="preload" href="/assets/css/styles.22a48f6f.css" as="style"><link rel="preload" href="/assets/js/654.dab245bc.js" as="script"><link rel="preload" href="/assets/js/app.6dd2da62.js" as="script">
+    <link rel="preload" href="/assets/js/runtime~app.952ec91b.js" as="script"><link rel="preload" href="/assets/css/styles.22a48f6f.css" as="style"><link rel="preload" href="/assets/js/654.7fb38cc2.js" as="script"><link rel="preload" href="/assets/js/app.c258e6f4.js" as="script">
     <link rel="stylesheet" href="/assets/css/styles.22a48f6f.css">
   </head>
   <body>
-    <div id="app"><!--[--><div class="global-layout"><header class="page-header"><div class="datetime"><span>login: </span><a href="/about-me" class="about-me">关于我</a></div><div class="input"><div class="block-1"><img src="/assets/img/mac.f535b1d3.svg" alt="mac.png" class="block-1-img"></div><div class="block-2"><img src="/assets/img/home.056909d2.svg" alt="home.png" class="block-2-img"><span class="path">~/posts/ts-generic.html</span></div><span class="angle"></span></div></header><div class="content-wrap theme-content"><!--[--><h1 id="typescript-泛型应用-一" tabindex="-1"><a class="header-anchor" href="#typescript-泛型应用-一" aria-hidden="true">#</a> TypeScript 泛型应用(一)</h1><blockquote><p>TypeScript 泛型简单来说就是一个接口的类型定义的时候不确定是什么类型，在使用的时候才去赋予它确定的类型，这就使得这个接口具有复用性。</p></blockquote><p>接下来通过几个实际的例子 🌰 来说明一下它的应用场景。</p><div class="language-typescript ext-ts"><pre class="language-typescript"><code>// 获取一个number类型的数组
-const makeNumArr = (val: number) =&gt; [val];
-
-// 获取一个字符串数组
-const makeStrArr = (val: string) =&gt; [val];
-</code></pre></div><p>在上面的示例中，我们通过参数类型的限制来得到返回值的类型，这样参数的类型一变化，就要新写一个函数，很不复用。我们想要的是编译时根据参数类型就得到对应的返回值类型，这时候就要用到泛型了。</p><div class="language-typescript ext-ts"><pre class="language-typescript"><code>// 在函数前面加上&lt;T&gt; 表示这个函数接收一个泛型参数
-const makeArr = &lt;T&gt;(val: T) =&gt; [val];
-
-// 在使用的时候，如果参数是一个number类型，ts自动推导出返回值类型是number[];
-// 在使用的时候，如果参数是一个string类型，ts自动推导出返回值类型是string[];
-const numberArr = makeArr(1);
-const stringArr = makeArr(&quot;hello&quot;);
-</code></pre></div><p>或者我们可以给一个泛型函数定义一个接口类型，根据这个接口类型可以生成不用类型的函数</p><div class="language-typescript ext-ts"><pre class="language-typescript"><code>interface GenericArr&lt;T&gt; {
-  (val: T): T[];
-}
-const makeArr = &lt;T&gt;(val: T) =&gt; [val];
-// 得到一个限制输入参数为number的函数
-let makeNumberArr: GenericArr&lt;number&gt; = makeArr;
-// 得到一个限制输入参数为string的函数
-let makeStringArr: GenericArr&lt;string&gt; = makeArr;
-const numberArr = makeNumberArr(1);
-const stringArr = makeStringArr(&quot;hello&quot;);
-</code></pre></div><br><br><hr><h3 id="泛型-extends" tabindex="-1"><a class="header-anchor" href="#泛型-extends" aria-hidden="true">#</a> 泛型 extends</h3><p>有这样一种场景，在使用函数的时候，我们传参是一个对象，但是我们可能只对这个参数的几个字段做处理，其他字段不变。</p><div class="language-typescript ext-ts"><pre class="language-typescript"><code>const makeFullName = (obj) =&gt; ({
-  ...obj,
-  fullName: `${obj.firstname} ${obj.lastname}`,
-});
-
-// 这里对obj的类型约束就是
-const makeFullName = (obj: { firstname: string; lastname: string }) =&gt; ({
-  ...obj,
-  fullName: `${obj.firstname} ${obj.lastname}`,
-});
-
-// 但是我们传入的参数可能不止两个字段，还包含一些其他的字段
-const res = makeFullName({ firstname: &quot;mary&quot;, lastname: &quot;sun&quot;, age: 20 });
-
-// 这里编译器就会提示我们age这个字段不在{ firstname: string; lastname: string } 这个类型中。这种情况可以有两种处理方式
-// 第一种是把传的参数提前以一个变量的形式定义
-const obj1 = {
-  firstname: &quot;mary&quot;,
-  lastname: &quot;sun&quot;,
-  age: 20,
-};
-// 这种情况就不会报编译错误
-const res2 = makeFullName(obj1);
-// 第二种是给这个函数添加泛型参数
-const makeFullName2 = &lt;T extends { firstname: string; lastname: string }&gt;(
-  obj: T
-) =&gt; ({
-  ...obj,
-  fullName: `${obj.firstname} ${obj.lastname}`,
-});
-// 然后再以内联参数的形式传参，也不会报编译错误了
-const res3 = makeFullName2({
-  firstname: &quot;mary&quot;,
-  lastname: &quot;sun&quot;,
-  age: 20,
-});
-</code></pre></div><p>在 React 项目中，用到泛型的地方也很多，比如组件的 Props 和 State 就是一个泛型。取一个比较常见的 🌰。</p><div class="language-tsx ext-tsx"><pre class="language-tsx"><code>&lt;!-- APP.tsx --&gt;
-import React, {useState} from &quot;react&quot;;
-import { render } from &#39;react-dom&#39;;
-
-interface HelloWorldProps {
-  name: string;
-}
-const HelloWorld: React.FC&lt;HelloWorldProps&gt; = ({name}) =&gt; {
-  const  [state] = useState&lt;{name: string}&gt;({name: &#39;&#39;})
-  return (
-  &lt;div&gt;hello {name}&lt;/div&gt;
-)
-}
-
-interface FormProps&lt;T&gt; {
-  values: T;
-  children: (values: T) =&gt; React.ReactNode;
-}
-const Form = &lt;T extends {}&gt;({values, children}: FormProps&lt;T&gt;) =&gt; {
-  return children(values)
-}
-
-const App = () =&gt; (
-  &lt;div id=&quot;root&quot;&gt;
-    &lt;HelloWorld /&gt;
-    &lt;Form values={{firstName: &#39;bob&#39;}}&gt;
-      {(values) =&gt; &lt;div&gt;{values.firstName}&lt;/div&gt;}
-    &lt;/Form&gt;
-  &lt;/div&gt;
-)
-
-render(
-  &lt;App /&gt;,
-  document.getElementById(&#39;root&#39;)
-);
-</code></pre></div><!--]--></div></div><!----><!--]--></div>
-    <script src="/assets/js/runtime~app.c16be218.js" defer></script><script src="/assets/js/654.dab245bc.js" defer></script><script src="/assets/js/app.6dd2da62.js" defer></script>
+    <div id="app"><!--[--><!----><!----><!--]--></div>
+    <script src="/assets/js/runtime~app.952ec91b.js" defer></script><script src="/assets/js/654.7fb38cc2.js" defer></script><script src="/assets/js/app.c258e6f4.js" defer></script>
   </body>
 </html>

@@ -2,63 +2,11 @@
 <html lang="zh-CN">
   <head>
     <link rel="icon" href="/favicon.ico"><title>React.createRef | ElsaOOo Blog</title><meta name="description" content="react 源码解析，react creatRef react lazy"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="VuePress 2.0.0-beta.22">
-    <link rel="preload" href="/assets/js/runtime~app.c16be218.js" as="script"><link rel="preload" href="/assets/css/styles.22a48f6f.css" as="style"><link rel="preload" href="/assets/js/654.dab245bc.js" as="script"><link rel="preload" href="/assets/js/app.6dd2da62.js" as="script">
+    <link rel="preload" href="/assets/js/runtime~app.952ec91b.js" as="script"><link rel="preload" href="/assets/css/styles.22a48f6f.css" as="style"><link rel="preload" href="/assets/js/654.7fb38cc2.js" as="script"><link rel="preload" href="/assets/js/app.c258e6f4.js" as="script">
     <link rel="stylesheet" href="/assets/css/styles.22a48f6f.css">
   </head>
   <body>
-    <div id="app"><!--[--><div class="global-layout"><header class="page-header"><div class="datetime"><span>login: </span><a href="/about-me" class="about-me">关于我</a></div><div class="input"><div class="block-1"><img src="/assets/img/mac.f535b1d3.svg" alt="mac.png" class="block-1-img"></div><div class="block-2"><img src="/assets/img/home.056909d2.svg" alt="home.png" class="block-2-img"><span class="path">~/react-source-code/ref-lazy.html</span></div><span class="angle"></span></div></header><div class="content-wrap theme-content"><!--[--><h1 id="react-createref" tabindex="-1"><a class="header-anchor" href="#react-createref" aria-hidden="true">#</a> React.createRef</h1><p>这个顶层 API 是帮助我们获取到真实的 dom 元素，它的简单用法：在构造组件时，通常将 Refs 分配给实例属性，这样在整个组件中引用它们。</p><div class="language-react ext-react"><pre class="language-react"><code>class MyInput extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.inputRef = React.createRef();
-  }
-
-  return (
-  	&lt;input ref={inputRef} /&gt;
-  )
-}
-</code></pre></div><p>这样在这个组件 didMount 的时候，我们通过 inputRef.current 就能拿到这个 input 元素的真实 dom 节点了。</p><p>它的源码也很简单：</p><div class="language-javascript ext-js"><pre class="language-javascript"><code>// an immutable object with a single mutable value
-export function createRef(): RefObject {
-  const refObject = {
-    current: null,
-  };
-  if (__DEV__) {
-    Object.seal(refObject);
-  }
-  return refObject;
-}
-</code></pre></div><p>作者源码注释写的是这个函数返回一个不变的对象，这个对象有一个可变的 current 属性。</p><p>React.createRef 是用在类组件里面的，<strong>不能在函数组件上使用 <code>ref</code> 属性，因为它们没有实例</strong>。</p><p>不能在函数组件上使用 ref 的意思是：</p><div class="language-react ext-react"><pre class="language-react"><code>class Demo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.childRef = React.createRef();
-  }
-
-  return (
-  	// 这样在函数组件上使用createRef是没有作用的
-  	&lt;Child ref={this.childRef} /&gt;
-  )
-
-}
-
-const Child = () =&gt; {
-  return (
-  	&lt;input type=&quot;text&quot; /&gt;
-  )
-}
-</code></pre></div><p>如果要在函数组件上使用<code>ref</code> ，可以使用<code>forwardRef</code> ，或者将该函数组件转换成 class 组件。</p><p>在 hooks 中，<code>useRef</code>的函数签名是：</p><div class="language-javascript ext-js"><pre class="language-javascript"><code>useRef&lt;T&gt;(initialValue: T): {current: T}
-</code></pre></div><p>和 createRef 的返回值一样，只不过这里多了一个参数，但是这个参数又没有用到。</p><h2 id="react-lazy" tabindex="-1"><a class="header-anchor" href="#react-lazy" aria-hidden="true">#</a> React.lazy</h2><div class="language-javascript ext-js"><pre class="language-javascript"><code>// lazy接受一个函数，这个函数动态调用import()。返回一个Promise，该Promise需要resolve一个default export的React组件
-export function lazy&lt;T, R&gt;(ctor: () =&gt; Thenable&lt;T, R&gt;): LazyComponent&lt;T&gt; {
-  let lazyType = {
-    $typeof: REACT_LAZY_TYPE,
-    _ctor: ctor,
-    // React uses these fields to store the result.
-    _status: -1,
-    _result: null,
-  };
-
-  return lazyType;
-}
-</code></pre></div><p>🌰：</p><div class="language-react ext-react"><pre class="language-react"><code>const OtherComponent = React.lazy(() =&gt; import(&#39;./OtherComponent&#39;));
-</code></pre></div><!--]--></div></div><!----><!--]--></div>
-    <script src="/assets/js/runtime~app.c16be218.js" defer></script><script src="/assets/js/654.dab245bc.js" defer></script><script src="/assets/js/app.6dd2da62.js" defer></script>
+    <div id="app"><!--[--><!----><!----><!--]--></div>
+    <script src="/assets/js/runtime~app.952ec91b.js" defer></script><script src="/assets/js/654.7fb38cc2.js" defer></script><script src="/assets/js/app.c258e6f4.js" defer></script>
   </body>
 </html>

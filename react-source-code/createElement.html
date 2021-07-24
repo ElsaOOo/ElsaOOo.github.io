@@ -2,43 +2,11 @@
 <html lang="zh-CN">
   <head>
     <link rel="icon" href="/favicon.ico"><title>React.createElement | ElsaOOo Blog</title><meta name="description" content="react 源码解析，react createElement"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="VuePress 2.0.0-beta.22">
-    <link rel="preload" href="/assets/js/runtime~app.c16be218.js" as="script"><link rel="preload" href="/assets/css/styles.22a48f6f.css" as="style"><link rel="preload" href="/assets/js/654.dab245bc.js" as="script"><link rel="preload" href="/assets/js/app.6dd2da62.js" as="script">
+    <link rel="preload" href="/assets/js/runtime~app.952ec91b.js" as="script"><link rel="preload" href="/assets/css/styles.22a48f6f.css" as="style"><link rel="preload" href="/assets/js/654.7fb38cc2.js" as="script"><link rel="preload" href="/assets/js/app.c258e6f4.js" as="script">
     <link rel="stylesheet" href="/assets/css/styles.22a48f6f.css">
   </head>
   <body>
-    <div id="app"><!--[--><div class="global-layout"><header class="page-header"><div class="datetime"><span>login: </span><a href="/about-me" class="about-me">关于我</a></div><div class="input"><div class="block-1"><img src="/assets/img/mac.f535b1d3.svg" alt="mac.png" class="block-1-img"></div><div class="block-2"><img src="/assets/img/home.056909d2.svg" alt="home.png" class="block-2-img"><span class="path">~/react-source-code/createElement.html</span></div><span class="angle"></span></div></header><div class="content-wrap theme-content"><!--[--><h1 id="react-createelement" tabindex="-1"><a class="header-anchor" href="#react-createelement" aria-hidden="true">#</a> React.createElement</h1><p><em>文章引用请注明出处</em></p><p>我们在 react 项目中写的 jsx 代码经过 babel 编译后会变成普通的 js 代码：</p><div class="language-jsx ext-jsx"><pre class="language-jsx"><code>&lt;div className=&quot;page&quot;&gt;
-  &lt;Header&gt; Hello, This is React &lt;/Header&gt;
-  &lt;div&gt;Start to learn right now!&lt;/div&gt;
-  Right Reserve.
-&lt;/div&gt;
-</code></pre></div><p>👇 babel 转换</p><div class="language-javascript ext-js"><pre class="language-javascript"><code>React.createElement(
-  &quot;div&quot;,
-  {
-    className: &quot;page&quot;,
-  },
-  React.createElement(Header, null, &quot; Hello, This is React &quot;),
-  React.createElement(&quot;div&quot;, null, &quot;Start to learn right now!&quot;),
-  &quot;Right Reserve.&quot;
-);
-</code></pre></div><p>createElement 函数的作用是生成 ReactElement，一个 ReactElement 是一个对象，它主要包含：</p><div class="language-javascript ext-js"><pre class="language-javascript"><code>// $typeof 属性可以唯一标识一个ReactElement元素
-const ReactElement = function (type, key, ref, self, source, owner, props) {
-  const element = {
-    // This tag allows us to uniquely identify this as a React Element
-    $typeof: REACT_ELEMENT_TYPE,
-
-    // Built-in properties that belong on the element
-    type: type,
-    key: key,
-    ref: ref,
-    props: props,
-
-    // Record the component responsible for creating this element.
-    _owner: owner,
-  };
-
-  return element;
-};
-</code></pre></div><p>那 createElement 是在什么时候被执行的呢？</p><p><strong>是 render 函数被调用的时候执行。</strong></p><p>从刚才 babel 转换后的代码中可以看到 Children 类型有 String、原生 DOM 节点的 element、React components (自定义组件的 element)，其他还有 false、null、undefined、number 这些都是 ReactElement，children 类型还可以是一个数组(在 render 中使用 map 的时候)。</p><p>所以在调用 creatElement 后得到了 ReactElement 类型的一个对象，接着根据这个对象生成真实的 dom 元素</p><p><img src="/assets/img/createElement.9a75d4eb.png" alt="image-20200806211946726"></p><p>然后直接操作浏览器 DOM 元素，将元素挂载上去。</p><!--]--></div></div><!----><!--]--></div>
-    <script src="/assets/js/runtime~app.c16be218.js" defer></script><script src="/assets/js/654.dab245bc.js" defer></script><script src="/assets/js/app.6dd2da62.js" defer></script>
+    <div id="app"><!--[--><!----><!----><!--]--></div>
+    <script src="/assets/js/runtime~app.952ec91b.js" defer></script><script src="/assets/js/654.7fb38cc2.js" defer></script><script src="/assets/js/app.c258e6f4.js" defer></script>
   </body>
 </html>

@@ -2,60 +2,11 @@
 <html lang="zh-CN">
   <head>
     <link rel="icon" href="/favicon.ico"><title>JS 数组扁平化的几种方式 | ElsaOOo Blog</title><meta name="description" content="js 数组扁平化的几种方式"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="VuePress 2.0.0-beta.22">
-    <link rel="preload" href="/assets/js/runtime~app.c16be218.js" as="script"><link rel="preload" href="/assets/css/styles.22a48f6f.css" as="style"><link rel="preload" href="/assets/js/654.dab245bc.js" as="script"><link rel="preload" href="/assets/js/app.6dd2da62.js" as="script">
+    <link rel="preload" href="/assets/js/runtime~app.952ec91b.js" as="script"><link rel="preload" href="/assets/css/styles.22a48f6f.css" as="style"><link rel="preload" href="/assets/js/654.7fb38cc2.js" as="script"><link rel="preload" href="/assets/js/app.c258e6f4.js" as="script">
     <link rel="stylesheet" href="/assets/css/styles.22a48f6f.css">
   </head>
   <body>
-    <div id="app"><!--[--><div class="global-layout"><header class="page-header"><div class="datetime"><span>login: </span><a href="/about-me" class="about-me">关于我</a></div><div class="input"><div class="block-1"><img src="/assets/img/mac.f535b1d3.svg" alt="mac.png" class="block-1-img"></div><div class="block-2"><img src="/assets/img/home.056909d2.svg" alt="home.png" class="block-2-img"><span class="path">~/javascript/flatten-array.html</span></div><span class="angle"></span></div></header><div class="content-wrap theme-content"><!--[--><h1 id="js-数组扁平化的几种方式" tabindex="-1"><a class="header-anchor" href="#js-数组扁平化的几种方式" aria-hidden="true">#</a> JS 数组扁平化的几种方式</h1><p>在日常开发工作中，将一个多维数组扁平化为一维数组是常见的需求，这里总结一下js中数组扁平化的几种方式。</p><h3 id="递归实现" tabindex="-1"><a class="header-anchor" href="#递归实现" aria-hidden="true">#</a> 递归实现</h3><p>通过递归的方式，一项一项的去遍历，如果每一项还是一个数组，就继续往下去遍历，直到单个元素不是一个数组，</p><div class="language-javascript ext-js"><pre class="language-javascript"><code>const nestArr = [1, [2], [[3], [4]], [[[5], [6]]]];
-
-function flattenArray(array) {
-    let result = [];
-    for (let i = 0; i &lt; array.length; i++) {
-        if (Array.isArray(array[i])) {
-            result = result.concat(flattenArray(array[i]));
-        } else {
-            result.push(array[i]);
-        }
-        
-    }
-    return result;
-}
-
-console.log(flattenArray(nestArr))  // =&gt; [ 1, 2, 3, 4, 5, 6 ]
-</code></pre></div><h3 id="js-reduce方法" tabindex="-1"><a class="header-anchor" href="#js-reduce方法" aria-hidden="true">#</a> js reduce方法</h3><p>reduce方法其实也是一种递归方法，比上面的for循环简洁一点。</p><div class="language-javascript ext-js"><pre class="language-javascript"><code>const nestArr = [1, [2], [[3], [4]], [[[5], [6]]]];
-function flattenArray(array) {
-    return array.reduce((acc, cur) =&gt; {
-        return acc.concat(Array.isArray(cur) ? flattenArray(cur) : cur);
-    }, [])
-}
-
-console.log(flattenArray(nestArr)) // =&gt; [ 1, 2, 3, 4, 5, 6 ]
-</code></pre></div><h3 id="js-扩展运算符实现" tabindex="-1"><a class="header-anchor" href="#js-扩展运算符实现" aria-hidden="true">#</a> js 扩展运算符实现</h3><div class="language-javascript ext-js"><pre class="language-javascript"><code>const nestArr = [1, [2], [[3], [4]], [[[5], [6]]]];
-function flattenArray(array) {
-    while (array.some((item) =&gt; Array.isArray(item))) {
-      // 每次展开一项
-        array = [].concat(...array)        
-    }
-    return array;
-}
-
-console.log(flattenArray(nestArr)) // =&gt; [ 1, 2, 3, 4, 5, 6 ]
-</code></pre></div><h3 id="js-数组的flat方法" tabindex="-1"><a class="header-anchor" href="#js-数组的flat方法" aria-hidden="true">#</a> js 数组的flat方法</h3><p>ES6中的flat方法，可以直接实现数组的扁平化</p><div class="language-javascript ext-js"><pre class="language-javascript"><code>arr.flat([depth]) // 具体参考mdn文档
-</code></pre></div><h3 id="tostring-split方法" tabindex="-1"><a class="header-anchor" href="#tostring-split方法" aria-hidden="true">#</a> toString + split方法</h3><div class="language-javascript ext-js"><pre class="language-javascript"><code>const nestArr = [1, [2], [[3], [4]], [[[5], [6]]]];
-function flattenArray(array) {
-    return array.toString().split(&#39;,&#39;) // 这里的toString()方法将数组中的每一项转化为字符串类型
-}
-console.log(flattenArray(nestArr)) // =&gt; [ &#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;, &#39;6&#39; ]
-</code></pre></div><h3 id="正则-json方法处理" tabindex="-1"><a class="header-anchor" href="#正则-json方法处理" aria-hidden="true">#</a> 正则 + JSON方法处理</h3><div class="language-javascript ext-js"><pre class="language-javascript"><code>const nestArr = [1, [2], [[3], [4]], [[[5], [6]]]];
-function flattenArray(array) {
-    let str = JSON.stringify(array);
-    str = str.replace(/(\[|\])/g, &#39;&#39;);
-    str = `[${str}]`;
-    return JSON.parse(str);
-}
-
-console.log(flattenArray(nestArr)) // =&gt; [ 1, 2, 3, 4, 5, 6 ]
-</code></pre></div><!--]--></div></div><!----><!--]--></div>
-    <script src="/assets/js/runtime~app.c16be218.js" defer></script><script src="/assets/js/654.dab245bc.js" defer></script><script src="/assets/js/app.6dd2da62.js" defer></script>
+    <div id="app"><!--[--><!----><!----><!--]--></div>
+    <script src="/assets/js/runtime~app.952ec91b.js" defer></script><script src="/assets/js/654.7fb38cc2.js" defer></script><script src="/assets/js/app.c258e6f4.js" defer></script>
   </body>
 </html>
