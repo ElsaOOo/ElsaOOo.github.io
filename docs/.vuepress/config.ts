@@ -8,7 +8,9 @@ export default defineUserConfig<DefaultThemeOptions>({
   lang: 'zh-CN',
   title: "ElsaOOo Blog",
   description: "ElsaOOo Blog, 前端笔记",
-  head: [["link", { rel: "icon", href: "/favicon.ico" }], ['script', { src: '/prism.js', defer: true }]],
+  head: [["link", { rel: "icon", href: "/favicon.ico" }], 
+  // ['script', { src: '/prism.js', defer: true }]
+],
   theme: path.resolve(__dirname, './theme'),
   clientAppEnhanceFiles: path.resolve(__dirname, './clientAppEnhance.ts'),
   plugins: [

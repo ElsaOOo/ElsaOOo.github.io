@@ -27,6 +27,7 @@ import { useRouter, useRoute } from 'vue-router'
 import { useCurrentTime } from '../hooks/useCurrentTime';
 import macLogo from './assets/mac.svg';
 import homeLogo from './assets/home.svg';
+import '../../scripts/prism.js';
 
 export default {
   setup() {
