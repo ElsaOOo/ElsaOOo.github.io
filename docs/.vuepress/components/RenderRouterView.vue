@@ -1,7 +1,7 @@
 <template>
   <ul class="file-names">
     <li v-for="item in routes" :key="item.path" class="file">
-      <a :href="isDir ? item.path : item.path + '.html'" :class="['file-link', isDir ? 'dir-link' : '']">{{item.name}}</a>
+      <router-link :to="isDir ? item.path : item.path + '.html'" :class="['file-link', isDir ? 'dir-link' : '']">{{item.name}}</router-link>
     </li>
   </ul>
 </template>
