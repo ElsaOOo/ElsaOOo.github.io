@@ -1,4 +1,5 @@
 <template>
+<ClientOnly>
   <div class="global-layout">
     <header class="page-header">
       <div class="datetime">
@@ -19,6 +20,7 @@
      <Content />      
     </div>
   </div>
+  </ClientOnly>
 </template>
 
 <script lang="ts">
@@ -37,7 +39,7 @@ export default {
     const macLogoPic = macLogo;
     const homeLogoPic = homeLogo;
 
-    const currentPath = computed(() => {
+    const currentPath = computed(() => {      
       if (route.path === '/') {
         return '~';
       }
