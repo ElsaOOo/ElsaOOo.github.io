@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
-    <link rel="icon" href="/favicon.ico"><script src="/prism.js"></script><title>JS 数组扁平化的几种方式 | ElsaOOo Blog</title><meta name="description" content="js 数组扁平化的几种方式"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="VuePress 2.0.0-beta.22">
-    <link rel="preload" href="/assets/js/runtime~app.f8bce1fc.js" as="script"><link rel="preload" href="/assets/css/styles.5a529915.css" as="style"><link rel="preload" href="/assets/js/621.f75be8b1.js" as="script"><link rel="preload" href="/assets/js/app.cd85d261.js" as="script">
-    <link rel="stylesheet" href="/assets/css/styles.5a529915.css">
+    <link rel="icon" href="/favicon.ico"><script src="/prism.js" defer></script><title>JS 数组扁平化的几种方式 | ElsaOOo Blog</title><meta name="description" content="js 数组扁平化的几种方式"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="VuePress 2.0.0-beta.22">
+    <link rel="preload" href="/assets/js/runtime~app.38aa59d2.js" as="script"><link rel="preload" href="/assets/css/styles.22a48f6f.css" as="style"><link rel="preload" href="/assets/js/654.dab245bc.js" as="script"><link rel="preload" href="/assets/js/app.a97c72b7.js" as="script">
+    <link rel="stylesheet" href="/assets/css/styles.22a48f6f.css">
   </head>
   <body>
     <div id="app"><!--[--><div class="global-layout"><header class="page-header"><div class="datetime"><span>login: </span><a href="/about-me" class="about-me">关于我</a></div><div class="input"><div class="block-1"><img src="/assets/img/mac.f535b1d3.svg" alt="mac.png" class="block-1-img"></div><div class="block-2"><img src="/assets/img/home.056909d2.svg" alt="home.png" class="block-2-img"><span class="path">~/javascript/flatten-array.html</span></div><span class="angle"></span></div></header><div class="content-wrap theme-content"><!--[--><h1 id="js-数组扁平化的几种方式" tabindex="-1"><a class="header-anchor" href="#js-数组扁平化的几种方式" aria-hidden="true">#</a> JS 数组扁平化的几种方式</h1><p>在日常开发工作中，将一个多维数组扁平化为一维数组是常见的需求，这里总结一下js中数组扁平化的几种方式。</p><h3 id="递归实现" tabindex="-1"><a class="header-anchor" href="#递归实现" aria-hidden="true">#</a> 递归实现</h3><p>通过递归的方式，一项一项的去遍历，如果每一项还是一个数组，就继续往下去遍历，直到单个元素不是一个数组，</p><div class="language-javascript ext-js"><pre class="language-javascript"><code>const nestArr = [1, [2], [[3], [4]], [[[5], [6]]]];
@@ -55,7 +55,7 @@ function flattenArray(array) {
 }
 
 console.log(flattenArray(nestArr)) // =&gt; [ 1, 2, 3, 4, 5, 6 ]
-</code></pre></div><!--]--></div></div><!--]--></div>
-    <script src="/assets/js/runtime~app.f8bce1fc.js" defer></script><script src="/assets/js/621.f75be8b1.js" defer></script><script src="/assets/js/app.cd85d261.js" defer></script>
+</code></pre></div><!--]--></div></div><!----><!--]--></div>
+    <script src="/assets/js/runtime~app.38aa59d2.js" defer></script><script src="/assets/js/654.dab245bc.js" defer></script><script src="/assets/js/app.a97c72b7.js" defer></script>
   </body>
 </html>

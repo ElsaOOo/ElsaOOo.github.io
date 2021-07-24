@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
-    <link rel="icon" href="/favicon.ico"><script src="/prism.js"></script><title>react-router 源码阅读 | ElsaOOo Blog</title><meta name="description" content="react-router 源码解析"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="VuePress 2.0.0-beta.22">
-    <link rel="preload" href="/assets/js/runtime~app.f8bce1fc.js" as="script"><link rel="preload" href="/assets/css/styles.5a529915.css" as="style"><link rel="preload" href="/assets/js/621.f75be8b1.js" as="script"><link rel="preload" href="/assets/js/app.cd85d261.js" as="script">
-    <link rel="stylesheet" href="/assets/css/styles.5a529915.css">
+    <link rel="icon" href="/favicon.ico"><script src="/prism.js" defer></script><title>react-router 源码阅读 | ElsaOOo Blog</title><meta name="description" content="react-router 源码解析"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="VuePress 2.0.0-beta.22">
+    <link rel="preload" href="/assets/js/runtime~app.38aa59d2.js" as="script"><link rel="preload" href="/assets/css/styles.22a48f6f.css" as="style"><link rel="preload" href="/assets/js/654.dab245bc.js" as="script"><link rel="preload" href="/assets/js/app.a97c72b7.js" as="script">
+    <link rel="stylesheet" href="/assets/css/styles.22a48f6f.css">
   </head>
   <body>
     <div id="app"><!--[--><div class="global-layout"><header class="page-header"><div class="datetime"><span>login: </span><a href="/about-me" class="about-me">关于我</a></div><div class="input"><div class="block-1"><img src="/assets/img/mac.f535b1d3.svg" alt="mac.png" class="block-1-img"></div><div class="block-2"><img src="/assets/img/home.056909d2.svg" alt="home.png" class="block-2-img"><span class="path">~/react-source-code/react-router.html</span></div><span class="angle"></span></div></header><div class="content-wrap theme-content"><!--[--><h1 id="react-router-源码阅读" tabindex="-1"><a class="header-anchor" href="#react-router-源码阅读" aria-hidden="true">#</a> react-router 源码阅读</h1><p>在react单页应用中，react-router是必不可少的一个依赖。 ReactTraining/react-router react-router的仓库是以monorepo的方式管理包的，在这个仓库里面同时包含有react-router、react-router-dom、react-router-native、react-router-config这四个包，其中react-router是核心包， react-router-dom、react-router-native都依赖于它。这里只看react-router和react-router-dom这两样。</p><p>在项目中，我们都是从react-router-dom引用路由相关组件的，所以从react-router-dom入手。 我们以一段最简单的代码开始：</p><div class="language-jsx ext-jsx"><pre class="language-jsx"><code>import React from &#39;react&#39;
@@ -261,7 +261,7 @@ class Route extends React.Component {
   }
 }
 export default Route;
-</code></pre></div><p>Route组件就是渲染匹配上的路由对应的组件。这里渲染组件的方式有三种children、component、render，他们的先后顺序就是children、component、render，这在源码中用了一连串的三元运算符，其实也很好理解。</p><p>所以整体来说是，Router这个组件里面监听路由location的变化，一旦location发生了变化，就会使得Switch、Route这些引用了RouterContext的组件重新渲染，重新走一遍各自组件里面对应的逻辑，然后就匹配路由的组件渲染出来。这个思路还是比较清晰的，代码也比较好理解。</p><!--]--></div></div><!--]--></div>
-    <script src="/assets/js/runtime~app.f8bce1fc.js" defer></script><script src="/assets/js/621.f75be8b1.js" defer></script><script src="/assets/js/app.cd85d261.js" defer></script>
+</code></pre></div><p>Route组件就是渲染匹配上的路由对应的组件。这里渲染组件的方式有三种children、component、render，他们的先后顺序就是children、component、render，这在源码中用了一连串的三元运算符，其实也很好理解。</p><p>所以整体来说是，Router这个组件里面监听路由location的变化，一旦location发生了变化，就会使得Switch、Route这些引用了RouterContext的组件重新渲染，重新走一遍各自组件里面对应的逻辑，然后就匹配路由的组件渲染出来。这个思路还是比较清晰的，代码也比较好理解。</p><!--]--></div></div><!----><!--]--></div>
+    <script src="/assets/js/runtime~app.38aa59d2.js" defer></script><script src="/assets/js/654.dab245bc.js" defer></script><script src="/assets/js/app.a97c72b7.js" defer></script>
   </body>
 </html>

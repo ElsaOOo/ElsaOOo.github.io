@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
-    <link rel="icon" href="/favicon.ico"><script src="/prism.js"></script><title>React.createRef | ElsaOOo Blog</title><meta name="description" content="react 源码解析，react creatRef react lazy"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="VuePress 2.0.0-beta.22">
-    <link rel="preload" href="/assets/js/runtime~app.f8bce1fc.js" as="script"><link rel="preload" href="/assets/css/styles.5a529915.css" as="style"><link rel="preload" href="/assets/js/621.f75be8b1.js" as="script"><link rel="preload" href="/assets/js/app.cd85d261.js" as="script">
-    <link rel="stylesheet" href="/assets/css/styles.5a529915.css">
+    <link rel="icon" href="/favicon.ico"><script src="/prism.js" defer></script><title>React.createRef | ElsaOOo Blog</title><meta name="description" content="react 源码解析，react creatRef react lazy"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="VuePress 2.0.0-beta.22">
+    <link rel="preload" href="/assets/js/runtime~app.38aa59d2.js" as="script"><link rel="preload" href="/assets/css/styles.22a48f6f.css" as="style"><link rel="preload" href="/assets/js/654.dab245bc.js" as="script"><link rel="preload" href="/assets/js/app.a97c72b7.js" as="script">
+    <link rel="stylesheet" href="/assets/css/styles.22a48f6f.css">
   </head>
   <body>
     <div id="app"><!--[--><div class="global-layout"><header class="page-header"><div class="datetime"><span>login: </span><a href="/about-me" class="about-me">关于我</a></div><div class="input"><div class="block-1"><img src="/assets/img/mac.f535b1d3.svg" alt="mac.png" class="block-1-img"></div><div class="block-2"><img src="/assets/img/home.056909d2.svg" alt="home.png" class="block-2-img"><span class="path">~/react-source-code/ref-lazy.html</span></div><span class="angle"></span></div></header><div class="content-wrap theme-content"><!--[--><h1 id="react-createref" tabindex="-1"><a class="header-anchor" href="#react-createref" aria-hidden="true">#</a> React.createRef</h1><p>这个顶层 API 是帮助我们获取到真实的 dom 元素，它的简单用法：在构造组件时，通常将 Refs 分配给实例属性，这样在整个组件中引用它们。</p><div class="language-react ext-react"><pre class="language-react"><code>class MyInput extends PureComponent {
@@ -58,7 +58,7 @@ export function lazy&lt;T, R&gt;(ctor: () =&gt; Thenable&lt;T, R&gt;): LazyCompo
   return lazyType;
 }
 </code></pre></div><p>🌰：</p><div class="language-react ext-react"><pre class="language-react"><code>const OtherComponent = React.lazy(() =&gt; import(&#39;./OtherComponent&#39;));
-</code></pre></div><!--]--></div></div><!--]--></div>
-    <script src="/assets/js/runtime~app.f8bce1fc.js" defer></script><script src="/assets/js/621.f75be8b1.js" defer></script><script src="/assets/js/app.cd85d261.js" defer></script>
+</code></pre></div><!--]--></div></div><!----><!--]--></div>
+    <script src="/assets/js/runtime~app.38aa59d2.js" defer></script><script src="/assets/js/654.dab245bc.js" defer></script><script src="/assets/js/app.a97c72b7.js" defer></script>
   </body>
 </html>

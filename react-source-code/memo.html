@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
-    <link rel="icon" href="/favicon.ico"><script src="/prism.js"></script><title>React.memo | ElsaOOo Blog</title><meta name="description" content="react 源码解析，react momo"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="VuePress 2.0.0-beta.22">
-    <link rel="preload" href="/assets/js/runtime~app.f8bce1fc.js" as="script"><link rel="preload" href="/assets/css/styles.5a529915.css" as="style"><link rel="preload" href="/assets/js/621.f75be8b1.js" as="script"><link rel="preload" href="/assets/js/app.cd85d261.js" as="script">
-    <link rel="stylesheet" href="/assets/css/styles.5a529915.css">
+    <link rel="icon" href="/favicon.ico"><script src="/prism.js" defer></script><title>React.memo | ElsaOOo Blog</title><meta name="description" content="react 源码解析，react momo"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="VuePress 2.0.0-beta.22">
+    <link rel="preload" href="/assets/js/runtime~app.38aa59d2.js" as="script"><link rel="preload" href="/assets/css/styles.22a48f6f.css" as="style"><link rel="preload" href="/assets/js/654.dab245bc.js" as="script"><link rel="preload" href="/assets/js/app.a97c72b7.js" as="script">
+    <link rel="stylesheet" href="/assets/css/styles.22a48f6f.css">
   </head>
   <body>
     <div id="app"><!--[--><div class="global-layout"><header class="page-header"><div class="datetime"><span>login: </span><a href="/about-me" class="about-me">关于我</a></div><div class="input"><div class="block-1"><img src="/assets/img/mac.f535b1d3.svg" alt="mac.png" class="block-1-img"></div><div class="block-2"><img src="/assets/img/home.056909d2.svg" alt="home.png" class="block-2-img"><span class="path">~/react-source-code/memo.html</span></div><span class="angle"></span></div></header><div class="content-wrap theme-content"><!--[--><h1 id="react-memo" tabindex="-1"><a class="header-anchor" href="#react-memo" aria-hidden="true">#</a> React.memo</h1><p><em>文章引用请注明出处</em></p><p>React.memo 是 React 的顶层 API 之一，React.memo 其实是一个高阶组件，它和 React.PureComponent 非常相似，但是<strong>只适用于函数组件</strong>。</p><p>如果所用的函数组件在给定相同 props 的情况下渲染相同的结果，这时候可以使用 React.memo，来<strong>记忆</strong>组件渲染结果的方式从而提高组件的性能表现。使用 React.memo，React 将跳过渲染组件的操作并直接复用最近一次渲染的结果。</p><p>但是，React.memo 仅检查 props 的变更，如果函数组件被<code>React.memo</code>包裹，且其实现中拥有<code>useState</code>或<code>useContext</code>的 hook，当 context 变化时，它仍会重新渲染。</p><p>默认情况下其只会<strong>对复杂对象做浅层对比</strong>，如果你想要控制对比过程，那么请将自定义的比较函数通过第二个参数传入来实现。</p><h3 id="源码" tabindex="-1"><a class="header-anchor" href="#源码" aria-hidden="true">#</a> 源码</h3><p><code>memo</code> 的位置在 packages/react/src/memo.js 中</p><div class="language-javascript ext-js"><pre class="language-javascript"><code>export default function memo&lt;Props&gt;(
@@ -102,7 +102,7 @@ export default React.memo(Child);
 
 export default App;
 </code></pre></div><p>这时候每改变一次 value 中的某个属性的值，子组件就会渲染一次，如示例中所示，如果我们想要子组件的渲染和父组件的 age 属性的改变无关的话，我们可以给 React.memo 传入第二个参数，是一个函数：</p><div class="language-javascript ext-js"><pre class="language-javascript"><code>type compare = (oldProps, newProps) =&gt; boolean;
-</code></pre></div><p>根据这个 compare 函数的返回值来判断要不要渲染子组件，true 就不渲染，false 就渲染。</p><!--]--></div></div><!--]--></div>
-    <script src="/assets/js/runtime~app.f8bce1fc.js" defer></script><script src="/assets/js/621.f75be8b1.js" defer></script><script src="/assets/js/app.cd85d261.js" defer></script>
+</code></pre></div><p>根据这个 compare 函数的返回值来判断要不要渲染子组件，true 就不渲染，false 就渲染。</p><!--]--></div></div><!----><!--]--></div>
+    <script src="/assets/js/runtime~app.38aa59d2.js" defer></script><script src="/assets/js/654.dab245bc.js" defer></script><script src="/assets/js/app.a97c72b7.js" defer></script>
   </body>
 </html>
