@@ -3,18 +3,10 @@
 <script>
 import {  reactive } from 'vue'
 const routes = [
-  {
-    name: '冒泡排序',
-    path: '/algorithm/bubble-sort'
-  },
-  {
-    name: '插入排序',
-    path: '/algorithm/insert-sort'
-  },
-  {
-    name: '归并排序',
-    path: '/algorithm/merge-sort'
-  },
+  // {
+  //   name: '你应该知道的一些正则知识',
+  //   path: '/regex/regex-you-should-know'
+  // },
 ]
 
 export default {

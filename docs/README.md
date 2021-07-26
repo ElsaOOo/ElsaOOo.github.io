@@ -1,6 +1,5 @@
 <RenderRouterView :routes="routesNames" :isDir="true" />
 
-
 <script>
 import {  reactive } from 'vue'
 const routes = [
@@ -15,6 +14,10 @@ const routes = [
   {
     name: 'react源码阅读',
     path: '/react-source-code'
+  },
+  {
+    name: 'vue相关源码阅读',
+    path: '/vue-source'
   },
   {
     name: '数据结构与算法',
