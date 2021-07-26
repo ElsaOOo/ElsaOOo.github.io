@@ -12,8 +12,7 @@ description: "关于我"
       <p>
         目前我的技术栈是
         <span class="underline">react + vue + typescript</span>
-        。了解后端语言JAVA、Python，目前在学习Haskell函数式编程语言，
-        之后还想了解下移动端📱编程语言Swift。
+        。了解后端语言JAVA、Python，目前在学习Haskell函数式编程语言和rust。
       </p>
     </div>
     <div class="my-projects">
