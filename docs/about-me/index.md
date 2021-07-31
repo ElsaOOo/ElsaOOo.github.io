@@ -12,7 +12,7 @@ description: "关于我"
       <p>
         目前我的技术栈是
         <span class="underline">react + vue + typescript</span>
-        。了解后端语言JAVA、Python，目前在学习Haskell函数式编程语言和rust。
+        。项目类型包括react、vue、微信小程序、uniapp，了解后端语言JAVA、Python，目前在学习Haskell函数式编程语言和rust。
       </p>
     </div>
     <div class="my-projects">
@@ -21,6 +21,19 @@ description: "关于我"
         <span>我的开源项目</span>
       </div>
       <ul class="projects">
+      <li class="project-item">
+          <div>
+            <span class="item-label">uniapp插件：</span>
+            <a
+              href="https://ext.dcloud.net.cn/plugin?id=5765"
+              target="_blank"
+            >https://ext.dcloud.net.cn/plugin?id=5765</a>
+          </div>
+          <div class="row-flex">
+            <span class="item-label">简介:</span>
+            <span>Transfer 穿梭框组件。</span>
+          </div>
+        </li>
         <li class="project-item">
           <div>
             <span class="item-label">npm包：</span>
